@@ -2,7 +2,7 @@ package moes;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
-
+import com.google.common.base.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,6 +34,7 @@ public class synchron implements Runnable  {
 		    	  if(browser==0){
 //		    		  				FirefoxBinary binary = new FirefoxBinary(new File(System.getProperty("user.home")+"\\Desktop\\Mozilla Firefox\\firefox.exe"));
 		    		  				FirefoxBinary binary = new FirefoxBinary(new File(System.getProperty("user.home")+"\\Desktop\\FireFOX\\"+version+"\\firefox.exe"));
+		    		  				System.out.println(System.getProperty("user.home")+"\\Desktop\\FireFOX\\"+version+"\\firefox.exe");
 								 	FirefoxProfile profile = new FirefoxProfile();
 								 	driver = new FirefoxDriver(binary, profile);
 								 	System.out.println("~~~~~~~~~~~~running FOX~~~~~~~~~~~~");

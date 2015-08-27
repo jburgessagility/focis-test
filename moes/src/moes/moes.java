@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import com.google.common.base.Function;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -53,11 +54,11 @@ public class moes {
 		
 					
 				System.out.println(args[0]);
-				  int max=4;
+				  int max=1;
 				  synchron[] a = new synchron[max];
 //				  
 				  for(int i =0; i<max; i++){
-					  a[i]=new synchron(i%4,1,args[0]);
+					  a[i]=new synchron(i%4,0,args[0]);
 					  a[i].start();
 				  }
 				  
