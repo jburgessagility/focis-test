@@ -53,8 +53,8 @@ public class Timer {
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
   	mode = newMode;
   	modeBase = System.currentTimeMillis();
-  	System.out.println("Total workflow time: "+time());
-  	System.out.println(log);
+  	
+  	System.out.println(mode + ";" + (System.currentTimeMillis() - modeBase));
   
   }
   
@@ -74,7 +74,15 @@ public class Timer {
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
   	log += "Workflow;" + (System.currentTimeMillis() - base) + "\n";
   	isOn = false;
+  	System.out.println(mode + ";" + (System.currentTimeMillis() - modeBase));
+  	System.out.println("Workflow;" + (System.currentTimeMillis() - base));
   	
+  }
+  
+  public void retryMode() {
+  	long modeTime = System.currentTimeMillis() - modeBase;
+  	base += modeTime;
+  	modeBase += modeTime;
   }
   
 }

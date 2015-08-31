@@ -6,17 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Workflow {
-	private WebDriver driver = new FirefoxDriver();
+	private WebDriver driver = new InternetExplorerDriver();
 	private WebDriverWait wait = new WebDriverWait(driver, 30);
 	static String Name = "Ocean Freight Workflow";
 	private Timer timer;
-	//private Recorder recorder;
 	
 	public void run(int laps) {
 		
@@ -30,8 +29,16 @@ public class Workflow {
 			String startingURL = "";
 			
 			timer.setMode("Load login page");
-			isAlertPresent();
-			driver.get(WorkflowRunner.bburl + "/login.aspx?ReturnUrl=%2f");
+			
+			while (true) {
+				try {
+					driver.get(WorkflowRunner.bburl);
+					break;
+				} catch (org.openqa.selenium.UnhandledAlertException e) {
+					acceptAlerts();
+					System.out.println("Error: " + e);
+				}
+			}
 			wait.until(ExpectedConditions.elementToBeClickable((By.id("Login1_UserName"))));
 		  
 		  timer.setMode("Populate login page");
@@ -62,7 +69,9 @@ public class Workflow {
 	  		} 
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e ) {	
 	  			System.out.println("Error: " + e);
+	  			acceptAlerts();
 	  			driver.get(startingURL);
+	  			timer.retryMode();
 	  		}
 	  	}
 	    while(true) {
@@ -72,7 +81,7 @@ public class Workflow {
 			  	timer.setMode("Populate job header");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode")).sendKeys("inbom",Keys.TAB,Keys.TAB);
 			    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt"), "Mumbai (ex Bombay)"));
-			    isAlertPresent();
+			    acceptAlerts();
 			    
 			    timer.setMode("Initiate job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")).click();
@@ -80,7 +89,9 @@ public class Workflow {
 	  		} 
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e) {
 	  			System.out.println("Error: " + e);
+	  			acceptAlerts();
 	  			driver.get(startingURL);
+	  			timer.retryMode();
 	  		}		
 	  	}
 	    while(true) {
@@ -100,37 +111,38 @@ public class Workflow {
 	  		} 
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e ) {
 	  			System.out.println("Error: " + e);
+	  			acceptAlerts();
 	  			driver.get(startingURL);
+	  			timer.retryMode();
 	  		}		
 	  	}
 
 	    timer.setMode("Log out");
-	    driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();
+  		driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
+			acceptAlerts();
+			
 	    
-	    if (i != laps - 1) { timer.lap("Login"); };
+	    if (i != laps - 1) { timer.lap("Load login page"); };
 	    
 			System.out.println("Finished lap "+(i+1));
 		}
-		
-		
-		
-		//timer.stop();
-		
-		//recorder.write(timer.log());
-
-	}
 	
-	public boolean isAlertPresent() 
+		timer.stop();
+	}
+
+	public boolean acceptAlerts() 
 	{ 
+		while (true) {
 	    try 
 	    { 
-	        driver.switchTo().alert(); 
-	        return true; 
+	        driver.switchTo().alert().accept(); 
+	        System.out.println("Accepted an alert");
 	    }   // try 
 	    catch (NoAlertPresentException Ex) 
 	    { 
 	        return false; 
 	    }   // catch 
+		}
 	} 
 	
 }

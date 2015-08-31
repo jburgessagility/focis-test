@@ -28,7 +28,7 @@ public class WorkflowRunner {
 		
 
 		Workflow workflow = new Workflow();
-		workflow.run(2);
+		workflow.run(10);
 
 
 	}
