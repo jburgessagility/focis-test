@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TestcaseInitiate {
+public class OceanFreightNavigation {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -26,6 +26,14 @@ public class TestcaseInitiate {
 
   @SuppressWarnings("deprecation")
 
+  public void populateTemplateSearch() {
+  	
+  }
+  
+  public void createBlankJob() {
+  	driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking"))
+  }
+  
   public void testCaseInitiate(WebDriver driver) throws Exception {
    //driver.get(moes.bburl + "/pages/focisjp/bookingdetails/bookingdetailsfrpg.aspx?q=cGFnZWlkfEJvb2tpbmdEZXRhaWxzRnJQZyZhY3Rpb25pZHxPcGVuQm9va2luZ0RldGFpbHMmYWN0aW9uY3JpdGVyaWF8JTViQm9va2luZ0RldGFpbHMlNWQuJTViSm9iTnVtYmVyJTVkJTNkJTI3MzA0NSUyNyZuZXh0YWN0aW9uY3JpdGVyaWF8JklzUG9wdXBQYWdlfGZhbHNlJnBnY2hpZHw3YmJjNjZlOTk4ZTA0MmUzOTgxYzdiNGYyMDcxYjRlNF96MHJzZzFwcmJ6eGVocG8zcGN0ZGZibTImVXNlckxhbmd1YWdlfCY%3d-Vi2IkUSaFyE%3d");
 	  	WebDriverWait wait = new WebDriverWait(driver, 3);

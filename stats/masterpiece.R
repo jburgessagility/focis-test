@@ -5,7 +5,10 @@ rm(list=ls())
 library(xtable)
 library("gridExtra")
 library(ggplot2)
-setwd(paste0("C:\\Users\\astuder\\Desktop\\attachi\\",format(Sys.time(), "%Y-%m-%d")))
+print(format(Sys.time(), "%Y-%m-%d"))
+
+setwd(paste0("C:\\Users\\JBurgess\\Desktop\\attachi\\",format(Sys.time(), "%Y-%m-%d")))
+
 # setwd(paste0("C:\\Users\\astuder\\Desktop\\attachi\\2015-08-26"))
 temp = list.files(pattern="*.csv")
 pdf()  

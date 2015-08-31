@@ -40,9 +40,9 @@ public class moes {
 
 	
 	
-	public static String bburl = "http://focissit.agility.com/";
-	public static String page = "SIT";
-	public static String accname = "astuder";
+	public static String bburl = "http://10.138.77.88:222/";
+	public static String page = "DEV";
+	public static String accname = "jburgess";
 	public static LinkedList<Long> datas = new LinkedList<Long>();
 	public static String MAC;
 	public static final String savedir="\\Desktop\\agilityBASEL\\";
