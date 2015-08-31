@@ -1,5 +1,6 @@
 package workflowRunner;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -12,12 +13,18 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Workflow {
-	private WebDriver driver = new InternetExplorerDriver();
-	private WebDriverWait wait = new WebDriverWait(driver, 30);
+	private WebDriver driver;
+	
+	
+	private WebDriverWait wait;
 	static String Name = "Ocean Freight Workflow";
 	private Timer timer;
 	
 	public void run(int laps) {
+		File file = new File("C:\\Users\\JBurgess\\Desktop\\IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+		driver = new InternetExplorerDriver();
+		wait = new WebDriverWait(driver, 30);
 		
 		timer = new Timer();
 	
