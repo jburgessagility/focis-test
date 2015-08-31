@@ -3,7 +3,7 @@
 // Keeps track of how much time the browser spends where and doing what
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-package moes;
+package workflowRunner;
 
 public class Timer {
 
@@ -34,16 +34,27 @@ public class Timer {
   	}
   	mode = newMode;
   	base = System.currentTimeMillis();
+  	modeBase = base;
   	isOn = true;
   	
   }	
   
   public void setMode(String newMode) {
   	
-  	if (mode == newMode || !isOn) { return; }
+  	if (mode == newMode) { return; }
+  	if (!isOn) {
+  		log = "Mode;Time\n";	
+    	mode = newMode;
+    	base = System.currentTimeMillis();
+    	modeBase = base;
+    	isOn = true;
+    	return;
+  	}
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
   	mode = newMode;
   	modeBase = System.currentTimeMillis();
+  	System.out.println("Total workflow time: "+time());
+  	System.out.println(log);
   
   }
   

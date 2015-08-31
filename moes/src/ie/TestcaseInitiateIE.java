@@ -1,5 +1,4 @@
 package ie;
-import moes.moes;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -10,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import workflowRunner.WorkflowRunner;
 
 public class TestcaseInitiateIE {
   private WebDriver driver;
@@ -31,12 +32,12 @@ public class TestcaseInitiateIE {
 	  	WebDriverWait wait = new WebDriverWait(driver, 3);
 	  	while(true){
 	  		try{  
-	  	driver.get(moes.bburl);
+	  	driver.get(WorkflowRunner.bburl);
 	    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem > span")).click();
 	    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem > span")).click();
 	    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct"))).selectByVisibleText("Ocean Freight");
 	    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProductType"))).selectByVisibleText("FCL (NVOCC)");
-	    int a = moes.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking")),"Blank Job");
+	    int a = WorkflowRunner.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking")),"Blank Job");
 	    System.out.println("sucess init 1");
 	    break;
 	  	}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException e ){System.out.println("lj");}
@@ -48,7 +49,7 @@ public class TestcaseInitiateIE {
 	    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt"), "Mumbai (ex Bombay)"));
 	    //driver.findElement(By.id("1_txtCountryCode")).sendKeys("IN",Keys.TAB);
 	    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("1_txtCountryCode"), "IN"));
-		int b= moes.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")),"Initiate Job");
+		int b= WorkflowRunner.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")),"Initiate Job");
 		System.out.println("sucess init 2");
 		break;
 	  		}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e){System.out.println("lj");}		
@@ -60,7 +61,7 @@ public class TestcaseInitiateIE {
 	    driver.findElement(By.linkText("Gokul")).click();
 	    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to Door");
 	    //driver.findElement(By.cssSelector("#1_AgMovementTypeId > option[value=\"4\"]")).click();
-	    int c= moes.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm")),"Preconfirm Job");
+	    int c= WorkflowRunner.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm")),"Preconfirm Job");
 	    System.out.println("sucess init 3");
 	    break;
 	  	}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException e ){System.out.println("err init 3");}		

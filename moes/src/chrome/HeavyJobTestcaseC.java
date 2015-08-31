@@ -1,5 +1,4 @@
 package chrome;
-import moes.moes;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -8,6 +7,8 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import workflowRunner.WorkflowRunner;
 
 public class HeavyJobTestcaseC {
   private WebDriver driver;
@@ -32,11 +33,11 @@ public class HeavyJobTestcaseC {
     driver.findElement(By.id("MainSearchOrders")).clear();
     driver.findElement(By.id("MainSearchOrders")).sendKeys("100001910",Keys.ENTER);   
 //    moes.analyse(driver.findElement(By.xpath("//tr[@id='2706']/td[21]/div/div/span")));
-    int a = moes.analyse(driver.findElement(By.xpath("//tr[@id='2706']/td[21]/div/div/span")),"Heavy Job Load");
+    int a = WorkflowRunner.analyse(driver.findElement(By.xpath("//tr[@id='2706']/td[21]/div/div/span")),"Heavy Job Load");
     //moes.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpAdvancedSearchLs1_AdvancedSearchLs1_btnOrderOpen")));
     System.out.println("sucess heavy job ");
     break;
-   	}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.StaleElementReferenceException e){System.out.println("err heavy job");driver.get(moes.bburl);}}
+   	}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.StaleElementReferenceException e){System.out.println("err heavy job");driver.get(WorkflowRunner.bburl);}}
   }
 
   @After

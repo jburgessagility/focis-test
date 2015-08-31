@@ -1,6 +1,4 @@
 package chrome;
-import moes.moes;
-
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -11,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import workflowRunner.WorkflowRunner;
 public class NewFromTemplateC {
   private WebDriver driver;
   private String baseUrl;
@@ -35,12 +35,12 @@ public class NewFromTemplateC {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem")));
     driver.findElement(By.id("PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem")).click();
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@id='100000023']/td[18]/div/div/span")));
-    moes.analyse(driver.findElement(By.xpath("//tr[@id='100000023']/td[18]/div/div/span")),"Create Job From Template");
+    WorkflowRunner.analyse(driver.findElement(By.xpath("//tr[@id='100000023']/td[18]/div/div/span")),"Create Job From Template");
     System.out.println("sucess new Form Template");
     //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateJobFromTemplate")));
     //int i = moes.analyse(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateJobFromTemplate")));
     break;
-			}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.StaleElementReferenceException  e ){System.out.println("err nft");driver.get(moes.bburl);}}
+			}catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.StaleElementReferenceException  e ){System.out.println("err nft");driver.get(WorkflowRunner.bburl);}}
   }
 
   @After
