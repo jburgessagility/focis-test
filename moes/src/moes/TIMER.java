@@ -1,28 +1,69 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Timer
+// Keeps track of how much time the browser spends where and doing what
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 package moes;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+public class Timer {
 
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-public class TIMER {
-	public static String browsername;
-	public static String browserversion;
-	public static String bburl = "http://focissit.agility.com/";
-	public static String dates;
-	TIMER(WebDriver driver){
-	    Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
-	    browsername = caps.getBrowserName();
-	    browserversion = caps.getVersion();
-	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    Date date = new Date();
-	    dates=dateFormat.format(date);
-	    // System.out.println(dateFormat.format(date)); //2014/08/06 15:59:48
-		
-	}
-	
-	
+  // Properties
+	private boolean isOn;
+	private long base;
+  private String mode;  
+  private long modeBase;
+  private String log;
+ 
+  
+  // Getters
+  public boolean on() { return isOn; };
+  public String mode() { return mode; }
+  public String log() { return log; }
+  public long time() { return System.currentTimeMillis() - base; }
+  public long modeTime()  {return System.currentTimeMillis() - modeBase; }
+ 
+  
+  // Methods
+  public void start(String newMode) {
+  	
+  	if (!isOn) { 
+  		log = "Mode;Time\n";	
+  		} else {
+  		setMode(newMode);
+  		
+  	}
+  	mode = newMode;
+  	base = System.currentTimeMillis();
+  	isOn = true;
+  	
+  }	
+  
+  public void setMode(String newMode) {
+  	
+  	if (mode == newMode || !isOn) { return; }
+  	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
+  	mode = newMode;
+  	modeBase = System.currentTimeMillis();
+  
+  }
+  
+  public void lap(String newMode) {
+  	
+  	if (!isOn) { return; }
+  	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
+  	log += "Workflow;" + (System.currentTimeMillis() - base) + "\n";
+  	mode = newMode;
+  	base = System.currentTimeMillis();
+  	
+  }
+  
+  public void stop() {
+  	
+  	if (!isOn) { return; }
+  	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
+  	log += "Workflow;" + (System.currentTimeMillis() - base) + "\n";
+  	isOn = false;
+  	
+  }
+  
 }
