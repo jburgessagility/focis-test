@@ -20,7 +20,7 @@ public class Workflow {
 	static String Name = "Ocean Freight Workflow";
 	private Timer timer;
 	
-	public void run(int laps) {
+	public void run(int numLaps) {
 		File file = new File("C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe");
 		System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 		driver = new InternetExplorerDriver();
@@ -30,7 +30,7 @@ public class Workflow {
 	
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 	
-		for (int i = 0; i < laps; i++) {
+		for (int i = 0; i < numLaps; i++) {
 			
 			System.out.println("----------------- Lap "+(i+1) + " -----------------");
 			String startingURL = "";
@@ -41,11 +41,12 @@ public class Workflow {
 				try {
 					driver.get(WorkflowRunner.bburl);
 					break;
-				} catch (org.openqa.selenium.UnhandledAlertException e) {
+				} // try 
+				catch (org.openqa.selenium.UnhandledAlertException e) {
 					acceptAlerts();
 					System.out.println("Error: " + e);
-				}
-			}
+				} // catch
+			} // while
 			wait.until(ExpectedConditions.elementToBeClickable((By.id("Login1_UserName"))));
 		  
 		  timer.setMode("Populate Login Page");
@@ -74,83 +75,154 @@ public class Workflow {
 			    timer.setMode("Create Blank Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking")).click();
 			    break;
-	  		} 
+	  		} // try
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e ) {	
 	  			System.out.println("Error: " + e);
 	  			acceptAlerts();
 	  			driver.get(startingURL);
 	  			timer.retryMode();
-	  		}
-	  	}
+	  		} // catch
+	  	} // while
 	    while(true) {
 	  		try {
 			  	startingURL = driver.getCurrentUrl();		
 			  	
 			  	timer.setMode("Populate Job Header");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode")).sendKeys("inbom",Keys.TAB,Keys.TAB);
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode")).sendKeys("gblon",Keys.TAB,Keys.TAB);
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms"))).selectByVisibleText("FOB - Free On Board");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation")).sendKeys("Nhava Sheva");
+			    
 			    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt"), "Mumbai (ex Bombay)"));
+			    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery"), "London"));
 			    acceptAlerts();
 			    
 			    timer.setMode("Initiate Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")).click();
 			    break;
-	  		} 
+	  		} // try
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e) {
 	  			System.out.println("Error: " + e);
 	  			acceptAlerts();
 	  			driver.get(startingURL);
 	  			timer.retryMode();
-	  		}		
-	  	}
+	  		}	// catch	
+	  	} // while
 	    while(true) {
 	  		try {
 	  			startingURL = driver.getCurrentUrl();
 	  			
 	  			timer.setMode("Populate Main Tab");
+	  			
+	  			// Shipper
 	  			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[10]")));
 			    driver.findElement(By.xpath("(//button[@type='button'])[10]")).click();
 			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("aia");
 			    driver.findElement(By.linkText("AIA Engineering Limited")).click();
 			    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to Door");
+
+			    // Consignee
+			    driver.findElement(By.xpath("(//button[@type='button'])[13]")).click();
+			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("press");
+			    driver.findElement(By.linkText("Presspart Manufacturing Ltd")).click();
+			    
+			    // Consignee Bill to Party
+			    driver.findElement(By.xpath("(//button[@type='button'])[14]")).click();
+			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("press");
+			    driver.findElement(By.linkText("Presspart Manufacturing Ltd")).click();
+			    
+			    // References
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Shipper");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("shipper ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Consignee");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("consignee ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Notify Party");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("notify party ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Collection");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("collection ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Delivery");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("delivery ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Final Agent");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("final agent ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Letter of Credit");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("letter of credit ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Euro Pallet");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("euro pallet ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Purchase Order");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue")).sendKeys("purchase order ref");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
+			    
+			    // Customer requirements
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")));
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")).click();
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3")).click();
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpCustomerReqBLType"))).selectByVisibleText("Original");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceValue")).sendKeys("123");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceCurrency_btnPopup")).click();
+			    driver.findElement(By.linkText("UAE Dirham")).click();
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkLC")).click();
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkInsuranceReq")).click();
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpOriginClearanceBy"))).selectByVisibleText("Agility");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtOriginLocation")).sendKeys("agility origin");
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpDestClearanceBy"))).selectByVisibleText("Agility");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtDestLocation")).sendKeys("agility destination");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtCargoAvailableDate")).sendKeys("01-Jan-2015");
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType"))).selectByVisibleText("Original");
+			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms"))).selectByVisibleText("Prepaid");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtNoOfEuroPallets")).sendKeys("99");
+			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtEuroPalletReference")).sendKeys("euro pallet refs");
 			    
 			    timer.setMode("Preconfirm Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm")).click();
 			    break;
-	  		} 
+	  		} // try 
 	  		catch(org.openqa.selenium.UnhandledAlertException | org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e ) {
 	  			System.out.println("Error: " + e);
 	  			acceptAlerts();
 	  			driver.get(startingURL);
 	  			timer.retryMode();
-	  		}		
-	  	}
+	  		}	// catch	
+	  	} // while
 
 	    timer.setMode("Load Logout Page");
   		driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
 			acceptAlerts();
 			
 	    
-	    if (i != laps - 1) { timer.lap("Load Login Page"); };
+	    if (i != numLaps - 1) { timer.lap("Load Login Page"); };
 	    
 			System.out.println("\n");
-		}
+		} // for
 	
 		timer.stop();
-	}
+	} // run
 
-	public boolean acceptAlerts() 
-	{ 
+	public boolean acceptAlerts() { 
 		while (true) {
-	    try 
-	    { 
+	    try { 
 	        driver.switchTo().alert().accept(); 
 	        System.out.println("Accepted an alert");
-	    }   // try 
-	    catch (NoAlertPresentException Ex) 
-	    { 
+	    } // try 
+	    catch (NoAlertPresentException Ex) { 
 	        return false; 
-	    }   // catch 
-		}
-	} 
+	    } // catch 
+		} // while
+	} // acceptAlerts
 	
-}
+} // Workflow
