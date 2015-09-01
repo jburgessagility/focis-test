@@ -35,7 +35,7 @@ public class Workflow {
 			System.out.println("----------------- Lap "+(i+1) + " -----------------");
 			String startingURL = "";
 			
-			timer.setMode("Load login page");
+			timer.setMode("Load Login Page");
 			
 			while (true) {
 				try {
@@ -48,12 +48,12 @@ public class Workflow {
 			}
 			wait.until(ExpectedConditions.elementToBeClickable((By.id("Login1_UserName"))));
 		  
-		  timer.setMode("Populate login page");
+		  timer.setMode("Populate Login Page");
 		  driver.findElement(By.id("Login1_UserName")).sendKeys(WorkflowRunner.accname);
 		  driver.findElement(By.id("Login1_Password")).clear();
 		  driver.findElement(By.id("Login1_Password")).sendKeys("q",Keys.ENTER);
 		  
-		  timer.setMode("Load home page");
+		  timer.setMode("Load Home Page");
 		  driver.findElement(By.id("Login1_LoginButton")).click();
 			
 	  	while(true) {
@@ -62,16 +62,16 @@ public class Workflow {
 	  			driver.get(WorkflowRunner.bburl);
 	  			
 	  			wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem > span"))));
-	  			timer.setMode("Load template search");
+	  			timer.setMode("Load Template Search");
 			    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem > span")).click();
 			    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem > span")).click();
 			    wait.until(ExpectedConditions.elementToBeClickable(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct")));
 			    
-			    timer.setMode("Populate template search");
+			    timer.setMode("Populate Template Search");
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct"))).selectByVisibleText("Ocean Freight");
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProductType"))).selectByVisibleText("FCL (NVOCC)");
 			    
-			    timer.setMode("Create blank job");
+			    timer.setMode("Create Blank Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking")).click();
 			    break;
 	  		} 
@@ -86,12 +86,12 @@ public class Workflow {
 	  		try {
 			  	startingURL = driver.getCurrentUrl();		
 			  	
-			  	timer.setMode("Populate job header");
+			  	timer.setMode("Populate Job Header");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode")).sendKeys("inbom",Keys.TAB,Keys.TAB);
 			    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt"), "Mumbai (ex Bombay)"));
 			    acceptAlerts();
 			    
-			    timer.setMode("Initiate job");
+			    timer.setMode("Initiate Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")).click();
 			    break;
 	  		} 
@@ -106,14 +106,14 @@ public class Workflow {
 	  		try {
 	  			startingURL = driver.getCurrentUrl();
 	  			
-	  			timer.setMode("Populate main tab");
+	  			timer.setMode("Populate Main Tab");
 	  			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[10]")));
 			    driver.findElement(By.xpath("(//button[@type='button'])[10]")).click();
 			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("aia");
 			    driver.findElement(By.linkText("AIA Engineering Limited")).click();
 			    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to Door");
 			    
-			    timer.setMode("Preconfirm job");
+			    timer.setMode("Preconfirm Job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm")).click();
 			    break;
 	  		} 
@@ -125,12 +125,12 @@ public class Workflow {
 	  		}		
 	  	}
 
-	    timer.setMode("Log out");
+	    timer.setMode("Load Logout Page");
   		driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
 			acceptAlerts();
 			
 	    
-	    if (i != laps - 1) { timer.lap("Load login page"); };
+	    if (i != laps - 1) { timer.lap("Load Login Page"); };
 	    
 			System.out.println("\n");
 		}

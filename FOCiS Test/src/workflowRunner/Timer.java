@@ -69,7 +69,9 @@ public class Timer {
   	log += "0;Workflow;" + (System.currentTimeMillis() - base) + "\n";
   	
   	printMode();
-  	System.out.println("Total workflow " + (System.currentTimeMillis() - base));
+  	//System.out.println("Total workflow " + (System.currentTimeMillis() - base));
+  	System.out.println("-----------------------------------------");
+  	System.out.format(" %3s %-29s %,5.1f%n", "   ", "Total Workflow", (float) (System.currentTimeMillis() - base) / 1000);
   	
   	mode = newMode;
   	modeCount = 1;
@@ -85,7 +87,7 @@ public class Timer {
   	log = "Mode;Time\n" + log;	
   	printMode();
   	
-  	System.out.println("Workflow " + (System.currentTimeMillis() - base));
+  	//System.out.println("Workflow " + (System.currentTimeMillis() - base));
   	System.out.format(" %3s %-29s %,5.1f%n", "   ", "Total Workflow", (float) (System.currentTimeMillis() - base) / 1000);
   	
   	
