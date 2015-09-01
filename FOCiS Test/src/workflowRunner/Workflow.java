@@ -32,10 +32,10 @@ public class Workflow {
 	
 		for (int i = 0; i < laps; i++) {
 			
-			System.out.println("Starting lap "+(i+1));
+			System.out.println("----------------- Lap "+(i+1) + " -----------------");
 			String startingURL = "";
 			
-			timer.setMode("01 Load login page");
+			timer.setMode("Load login page");
 			
 			while (true) {
 				try {
@@ -48,12 +48,12 @@ public class Workflow {
 			}
 			wait.until(ExpectedConditions.elementToBeClickable((By.id("Login1_UserName"))));
 		  
-		  timer.setMode("02 Populate login page");
+		  timer.setMode("Populate login page");
 		  driver.findElement(By.id("Login1_UserName")).sendKeys(WorkflowRunner.accname);
 		  driver.findElement(By.id("Login1_Password")).clear();
 		  driver.findElement(By.id("Login1_Password")).sendKeys("q",Keys.ENTER);
 		  
-		  timer.setMode("03 Load home page");
+		  timer.setMode("Load home page");
 		  driver.findElement(By.id("Login1_LoginButton")).click();
 			
 	  	while(true) {
@@ -62,16 +62,16 @@ public class Workflow {
 	  			driver.get(WorkflowRunner.bburl);
 	  			
 	  			wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem > span"))));
-	  			timer.setMode("04 Load template search");
+	  			timer.setMode("Load template search");
 			    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem > span")).click();
 			    driver.findElement(By.cssSelector("#PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem > span")).click();
 			    wait.until(ExpectedConditions.elementToBeClickable(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct")));
 			    
-			    timer.setMode("05 Populate template search");
+			    timer.setMode("Populate template search");
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct"))).selectByVisibleText("Ocean Freight");
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProductType"))).selectByVisibleText("FCL (NVOCC)");
 			    
-			    timer.setMode("06 Create blank job");
+			    timer.setMode("Create blank job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking")).click();
 			    break;
 	  		} 
@@ -86,12 +86,12 @@ public class Workflow {
 	  		try {
 			  	startingURL = driver.getCurrentUrl();		
 			  	
-			  	timer.setMode("07 Populate job header");
+			  	timer.setMode("Populate job header");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode")).sendKeys("inbom",Keys.TAB,Keys.TAB);
 			    wait.until(ExpectedConditions.textToBePresentInElementValue(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt"), "Mumbai (ex Bombay)"));
 			    acceptAlerts();
 			    
-			    timer.setMode("08 Initiate job");
+			    timer.setMode("Initiate job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate")).click();
 			    break;
 	  		} 
@@ -106,14 +106,14 @@ public class Workflow {
 	  		try {
 	  			startingURL = driver.getCurrentUrl();
 	  			
-	  			timer.setMode("09 Populate main tab");
+	  			timer.setMode("Populate main tab");
 	  			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[10]")));
 			    driver.findElement(By.xpath("(//button[@type='button'])[10]")).click();
 			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("aia");
 			    driver.findElement(By.linkText("AIA Engineering Limited")).click();
 			    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to Door");
 			    
-			    timer.setMode("10 Preconfirm job");
+			    timer.setMode("Preconfirm job");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm")).click();
 			    break;
 	  		} 
@@ -125,14 +125,14 @@ public class Workflow {
 	  		}		
 	  	}
 
-	    timer.setMode("11 Log out");
+	    timer.setMode("Log out");
   		driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
 			acceptAlerts();
 			
 	    
-	    if (i != laps - 1) { timer.lap("01 Load login page"); };
+	    if (i != laps - 1) { timer.lap("Load login page"); };
 	    
-			System.out.println("Finished lap " + (i + 1) + "\n\n");
+			System.out.println("\n");
 		}
 	
 		timer.stop();
