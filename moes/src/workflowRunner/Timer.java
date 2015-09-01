@@ -43,7 +43,7 @@ public class Timer {
   	
   	if (mode == newMode) { return; }
   	if (!isOn) {
-  		log = "Mode;Time\n";	
+  		log = "";
     	mode = newMode;
     	base = System.currentTimeMillis();
     	modeBase = base;
@@ -51,11 +51,12 @@ public class Timer {
     	return;
   	}
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
-  	mode = newMode;
-  	modeBase = System.currentTimeMillis();
   	
   	System.out.println(mode + ";" + (System.currentTimeMillis() - modeBase));
-  
+  	
+  	mode = newMode;
+  	modeBase = System.currentTimeMillis();
+
   }
   
   public void lap(String newMode) {
@@ -63,6 +64,10 @@ public class Timer {
   	if (!isOn) { return; }
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
   	log += "Workflow;" + (System.currentTimeMillis() - base) + "\n";
+  	
+  	System.out.println(mode + ";" + (System.currentTimeMillis() - modeBase));
+  	System.out.println("Total workflow;" + (System.currentTimeMillis() - base));
+  	
   	mode = newMode;
   	base = System.currentTimeMillis();
   	
@@ -73,9 +78,14 @@ public class Timer {
   	if (!isOn) { return; }
   	log += mode + ";" + (System.currentTimeMillis() - modeBase) + "\n";
   	log += "Workflow;" + (System.currentTimeMillis() - base) + "\n";
-  	isOn = false;
+  	log = "Mode;Time\n" + log;	
   	System.out.println(mode + ";" + (System.currentTimeMillis() - modeBase));
   	System.out.println("Workflow;" + (System.currentTimeMillis() - base));
+  	
+  	
+  	
+  	isOn = false;
+  	
   	
   }
   
