@@ -116,20 +116,16 @@ public class Workflow {
 	  			
 	  			// Shipper
 	  			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[10]")));
-			    driver.findElement(By.xpath("(//button[@type='button'])[10]")).click();
+			    driver.findElement(By.xpath("(//button[@type='button'])[9]")).click();
 			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("aia");
 			    driver.findElement(By.linkText("AIA Engineering Limited")).click();
-			    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to Door");
+			    new Select(driver.findElement(By.id("1_AgMovementTypeId"))).selectByVisibleText("Door to CY (Point of Loading)");
 
 			    // Consignee
-			    driver.findElement(By.xpath("(//button[@type='button'])[13]")).click();
+			    driver.findElement(By.xpath("(//button[@type='button'])[11]")).click();
 			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("press");
 			    driver.findElement(By.linkText("Presspart Manufacturing Ltd")).click();
-			    
-			    // Consignee Bill to Party
-			    driver.findElement(By.xpath("(//button[@type='button'])[14]")).click();
-			    driver.findElement(By.id("gs_StakeholderName")).sendKeys("press");
-			    driver.findElement(By.linkText("Presspart Manufacturing Ltd")).click();
+			    new Select(driver.findElement(By.id("2_AgMovementTypeId"))).selectByVisibleText("CY (Point of Loading) to Door");
 			    
 			    // References
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType"))).selectByVisibleText("Shipper");
@@ -169,8 +165,9 @@ public class Workflow {
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddAgilityReferences")).click();
 			    
 			    // Customer requirements
-			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")));
-			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")).click();
+			    while (!driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")).isSelected()) {
+			    	driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2")).click();	
+			    }			    
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3")).click();
 			    new Select(driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpCustomerReqBLType"))).selectByVisibleText("Original");
 			    driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceValue")).sendKeys("123");
@@ -201,7 +198,8 @@ public class Workflow {
 	  	} // while
 
 	    timer.setMode("Load Logout Page");
-  		driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
+  		//driver.findElement(By.xpath("//div[@id='pnlheader']/div[2]/ul/li[5]/a/i")).click();		
+  		driver.findElement(By.className("logout")).click();
 			acceptAlerts();
 			
 	    
