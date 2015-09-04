@@ -1,35 +1,44 @@
-package workflowRunner;
+package focisTestSuite;
 
 import java.io.File;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import focisTester.FOCiSTester;
+import focisTester.UIJob;
 
 public class WorkflowRunner {
 
-	public static UIDriver uiDriver = new UIDriver();
-	
 	public static void main(String[] args) {
 		
 		
 		/////////////////////////////////////////////////////////////////////////////////
-		// Driver Setup
+		// Setup
 		/////////////////////////////////////////////////////////////////////////////////
 		
-		File file = new File("C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe");
-		System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-		WebDriver driver = new InternetExplorerDriver();
-//		WebDriver driver = new FirefoxDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		uiDriver.setup(driver, wait);
+		HashMap<String,String> params = new HashMap<String, String>();
+		
+//		File json = new File(".\testparams.json");
+//		Gson gson = new Gson();
+//		
+//		Type stringStringMap = new TypeToken<HashMap<String, String>>(){}.getType();
+//		params = gson.fromJson(json, params.getClass());
+
+		params.put("url", "http://10.138.77.88:222/");
+		params.put("browser", "internetExplorer");
+		params.put("iePath", "C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe");
+				
+		FOCiSTester ft = new FOCiSTester(params);
+		UIJob job = FOCiSTester.job;
 		
 		
 		/////////////////////////////////////////////////////////////////////////////////
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
 		
-		UIJob job = new UIJob();
 		job.blankJob();
 		
 		job.setShipper("AIA Engineering Limited");
@@ -44,6 +53,6 @@ public class WorkflowRunner {
 		job.setUnit(2, "MSCU2345672", 14.2, 3.1, 4.6, "Shipper", "Hi Praveen!", false);
 		job.setUnit(3, "MSCU3456789", 22.5, 4.2, 2.2, "Shipper", "Hi Ashwath!", false);
 		job.setUnit(4, "MSCU4567895", 122.52, 120.2, 4.2, "Shipper", "Hi Phani!", false);
-			
+		
 	} // main
 } // WorkflowRunner

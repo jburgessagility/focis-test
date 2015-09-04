@@ -1,12 +1,12 @@
-package workflowRunner;
+package focisTester;
 
 public class UIJob extends UIModel {
 	
-	private static final String MAIN = "Main";
-	private static final String CARGO = "Cargo";
-	private static final String MOVEMENT = "Movement";
-	private static final String SERVICES = "Services";
-	private static final String EVENTS = "Events";
+	private static final String MAIN_LABEL = "Main";
+	private static final String CARGO_LABEL = "Cargo";
+	private static final String MOVEMENT_LABEL = "Movement";
+	private static final String SERVICES_LABEL = "Services";
+	private static final String EVENTS_LABEL = "Events";
 	
 	private static final String MAIN_TAB_XPATH = "//*[@id='LiParties']";
 	private static final String CARGO_TAB_XPATH = "//*[@id='LiCargoDetails']/a";
@@ -16,12 +16,15 @@ public class UIJob extends UIModel {
 	
 	private static final String PRODUCT_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
 	private static final String PRODUCT_TYPE_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
-	private static final String PLACE_OF_RECEIPT_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode";
-	private static final String PLACE_OF_RECEIPT_NAME_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt";
-	private static final String PLACE_OF_DELIVERY_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode";
-	private static final String PLACE_OF_DELIVERY_NAME_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery";
-	private static final String ORIGIN_BRANCH_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode";
-	private static final String DESTINATION_BRANCH_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode";
+	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
+	private static final String PLACE_OF_RECEIPT_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt']";
+	private static final String PLACE_OF_DELIVERY_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']";
+	private static final String PLACE_OF_DELIVERY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery']";
+	private static final String ORIGIN_BRANCH_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
+	private static final String DESTINATION_BRANCH_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
+	private static final String INCOTERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']";
+	private static final String INCOTERMS_LOCATION_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']";
+	
 	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
 	private static final String REQUIRE_FCR_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2']";
 	private static final String REQUIRE_FCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3']";
@@ -46,24 +49,10 @@ public class UIJob extends UIModel {
 	private static final String UNIT_TYPE_XPATH = "//select[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_UnitDetailsFr1_drpUnitType']";
 	private static final String ADD_UNITS_DIALOG_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_UnitDetailsFr1_btnAddUnitDetails']";
 	private static final String CONTINUE_DIALOG_XPATH = "//*[@id='btnUnitContinue']";
+	
+	
 	private static final String PLAN_ROUTE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddRoute']";
-	
-	// Header
-	private String placeOfReceipt;
-	private String placeOfDelivery;
-	private String incoterms;
-	private String incotermsLocation;
-	private String tab;
-	
-	// Main Tab
-	private UIStakeholder shipper = new UIStakeholder();
-	private UIStakeholder consignee = new UIStakeholder();
-	private UIStakeholder notifyParty = new UIStakeholder();
-	private UIStakeholder thirdParty = new UIStakeholder();
-	private String shipperMovement;
-	private String consigneeMovement;
-	private String thirdPartyMovement;
-	
+
 	private boolean requireSQSTBL;
 	private boolean requireFCR;
 	private boolean requireFCT;
@@ -74,6 +63,9 @@ public class UIJob extends UIModel {
 	private UIPackage[] packages;
 	private UIUnit[] units;
 	
+	public UIJob(UIDriver uiDriver) {
+		this.uiDriver = uiDriver;
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Page and Tab Navigation
@@ -84,34 +76,34 @@ public class UIJob extends UIModel {
 	}
 	
 	public void blankJob() {
-//		uiDriver.setup(driver, wait);
 		uiDriver.startBlankJob("Ocean Freight", "FCL (NVOCC)");
 	}
 	
-	public String getTab() {
-		return tab;
-	}
+	// TODO
+//	public String getTab() {
+//		return tab;
+//	}
 	
 	public void openTab(String tab) {
 		this.openJob();
 
-		if (this.getTab() == tab) { return; }
+		// if (this.getTab() == tab) { return; }
 		String xpathToClick = "";
 		
 		switch (tab) {
-			case "Main":
+			case MAIN_LABEL:
 				xpathToClick = MAIN_TAB_XPATH;
 				break;
-			case "Cargo":
+			case CARGO_LABEL:
 				xpathToClick = CARGO_TAB_XPATH;
 				break;
-			case "Movement":
+			case MOVEMENT_LABEL:
 				xpathToClick = MOVEMENT_TAB_XPATH;
 				break;
-			case "Services":
+			case SERVICES_LABEL:
 				xpathToClick = SERVICES_TAB_XPATH;
 				break;
-			case "Events":
+			case EVENTS_LABEL:
 				xpathToClick = EVENTS_TAB_XPATH;
 				break;
 			default:
@@ -119,7 +111,6 @@ public class UIJob extends UIModel {
 		} // switch
 		
 		uiDriver.clickAndWaitForClass(xpathToClick, "active");
-		this.tab = tab;
 	}
 	
 	
@@ -128,61 +119,62 @@ public class UIJob extends UIModel {
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	public String getProduct() {
-		this.openJob();
+		this.openTab(MAIN_LABEL);
 		return uiDriver.getText(PRODUCT_XPATH);
 	}
 	
 	public void setProduct(String product) {
-		this.openJob();
+		this.openTab(MAIN_LABEL);
 		uiDriver.setDropdown(PRODUCT_XPATH, product);
 	}
 	
 	public String getProductType() {
-		this.openJob();
+		this.openTab(MAIN_LABEL);
 		return uiDriver.getText(PRODUCT_TYPE_XPATH);
 	}
 	
 	public void setProductType(String productType) {
-		this.openJob();
+		this.openTab(MAIN_LABEL);
 		uiDriver.setDropdown(PRODUCT_TYPE_XPATH, productType);
 	}
 	
-	public String getPlaceOfReceipt() {
-		return placeOfReceipt;
-	}
+//	public String getPlaceOfReceipt() {
+//		this.openTab(MAIN_LABEL);
+//		//return placeOfReceipt;
+//	}
 	
 	public void setPlaceOfReceipt(String placeOfReceipt) {
-		this.openJob();
-		this.placeOfReceipt = placeOfReceipt;
+		this.openTab(MAIN_LABEL);
+		//this.placeOfReceipt = placeOfReceipt;
 	}
 	
 	public String getPlaceOfDelivery() {
-		return placeOfDelivery;
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(PLACE_OF_DELIVERY_CODE_XPATH);
 	}
 	
 	public void setPlaceOfDelivery(String placeOfDelivery) {
-		this.openJob();
-		this.placeOfDelivery = placeOfDelivery;
+		this.openTab(MAIN_LABEL);
 	}
 	
 	public String getIncoterms() {
-		return incoterms;
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(INCOTERMS_XPATH);
 	}
 	
 	public void setIncoterms(String incoterms) {
-		this.openJob();
-//		new Select(this.driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms"))).selectByVisibleText(incoterms);
-		this.incoterms = incoterms;
+		this.openTab(MAIN_LABEL);
+		uiDriver.setDropdown(INCOTERMS_XPATH, incoterms);
 	}
 	
 	public String getIncotermsLocation() {
-		return incotermsLocation;
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(INCOTERMS_LOCATION_XPATH);
 	}
 	
 	public void setIncotermsLocation(String incotermsLocation) {
-		this.openJob();
-//		driver.findElement(By.id("PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation")).sendKeys(incotermsLocation);
-		this.incotermsLocation = incotermsLocation;
+		this.openTab(MAIN_LABEL);
+		uiDriver.enterText(INCOTERMS_LOCATION_XPATH, incotermsLocation);
 	}
 	
 
@@ -190,78 +182,77 @@ public class UIJob extends UIModel {
 	// Main Tab
 	/////////////////////////////////////////////////////////////////////////////////
 	
-	public UIStakeholder getShipper() {
-		return shipper;
+	public String getShipper() {
+		return FOCiSTester.stakeholder.getName(SHIPPER_XPATH);
 	}
 	
 	public void setShipper(String shipperName) {
-		this.openTab(MAIN);
-		shipper.set(SHIPPER_XPATH, shipperName);
+		this.openTab(MAIN_LABEL);
+		FOCiSTester.stakeholder.set(SHIPPER_XPATH, shipperName);
 	}
 	
-	public UIStakeholder getConsignee() {
-		return consignee;
+	public String getConsignee() {
+		return FOCiSTester.stakeholder.getName(CONSIGNEE_XPATH);
 	}
 	
 	public void setConsignee(String consigneeName) {
-		this.openTab(MAIN);
-		consignee.set(CONSIGNEE_XPATH, consigneeName);
+		this.openTab(MAIN_LABEL);
+		FOCiSTester.stakeholder.set(CONSIGNEE_XPATH, consigneeName);
 	}
 	
-	public UIStakeholder getNotifyParty() {
-		return notifyParty;
+	public String getNotifyParty() {
+		return FOCiSTester.stakeholder.getName(NOTIFY_PARTY_XPATH);
 	}
 	
 	public void setNotifyParty(String notifyPartyName) {
-		this.openTab(MAIN);
-		notifyParty.set(NOTIFY_PARTY_XPATH, notifyPartyName);
+		this.openTab(MAIN_LABEL);
+		FOCiSTester.stakeholder.set(NOTIFY_PARTY_XPATH, notifyPartyName);
 	}
 	
-	public UIStakeholder getThirdParty() {
-		return thirdParty;
+	public String getThirdParty() {
+		return FOCiSTester.stakeholder.getName(THIRD_PARTY_XPATH);
 	}
 	
 	public void setThirdParty(String thirdPartyName) {
-		this.openTab(MAIN);
-		thirdParty.set(THIRD_PARTY_XPATH, thirdPartyName);
+		this.openTab(MAIN_LABEL);
+		FOCiSTester.stakeholder.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
 	public String getShipperMovement() {
-		return shipperMovement;
+		return uiDriver.getText(SHIPPER_MOVEMENT_XPATH);
 	} // getShipperMovement
 	
 	public void setShipperMovement(String shipperMovement) {
-		openTab(MAIN);
+		openTab(MAIN_LABEL);
 		uiDriver.setDropdown(SHIPPER_MOVEMENT_XPATH, shipperMovement);
-		this.shipperMovement = shipperMovement;
 	} // setShipperMovement
 	
 	public String getConsigneeMovement() {
-		return consigneeMovement;
+		return uiDriver.getText(CONSIGNEE_MOVEMENT_XPATH);
 	} // getConsigneeMovement
 
 	public void setConsigneeMovement(String consigneeMovement) {
-		openTab(MAIN);
+		openTab(MAIN_LABEL);
 		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, consigneeMovement);
-		this.consigneeMovement = consigneeMovement;
 	} // setConsigneemovement
 
-	public String getThirdPartyMovement() {
-		return thirdPartyMovement;
-	} // getThirdPartyMovement
-
-	public void setThirdPartyMovement(String thirdPartyMovement) {
-		openTab(MAIN);
-		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, thirdPartyMovement);
-		this.thirdPartyMovement = thirdPartyMovement;
-	} // setThirdPartyMovement
+	
+	// TODO
+//	public String getThirdPartyMovement() {
+//		return uiDriver.getText(THIRD_PARTY_MOVEMENT_XPATH);
+//	} // getThirdPartyMovement
+//
+//	public void setThirdPartyMovement(String thirdPartyMovement) {
+//		openTab(MAIN);
+//		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, thirdPartyMovement);
+//	} // setThirdPartyMovement
 	
 	public boolean getRequireSQSTBL() {
 		return requireSQSTBL;
 	} // getRequireSQSTBL
 	
 	public void setRequireSQSTBL(boolean requireSQSTBL) {
-		openTab(MAIN);
+		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_SQSTBL_XPATH, requireSQSTBL);
 		this.requireSQSTBL = requireSQSTBL;
 	} // setRequireSQSTBL
@@ -271,7 +262,7 @@ public class UIJob extends UIModel {
 	} // getRequireFCR
 	
 	public void setRequireFCR(boolean requireFCR) {
-		openTab(MAIN);
+		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCR_XPATH, requireFCR);
 		this.requireFCR = requireFCR;
 	} // setRequireFCR
@@ -281,7 +272,7 @@ public class UIJob extends UIModel {
 	} // getRequireFCT
 	
 	public void setRequireFCT(boolean requireFCT) {
-		openTab(MAIN);
+		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCT_XPATH, requireFCT);
 		this.requireFCT = requireFCT;
 	} // setRequireFCT
@@ -296,7 +287,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setMeasurementSystem(String measurementSystem) {
-		this.openTab(CARGO);
+		this.openTab(CARGO_LABEL);
 		uiDriver.setDropdown(MEASUREMENT_SYSTEM_XPATH, measurementSystem);
 		this.measurementSystem = measurementSystem;
 	}
@@ -306,7 +297,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setPackages(UIPackage[] packages) {
-		this.openTab(CARGO);
+		this.openTab(CARGO_LABEL);
 		this.packages = packages;
 	}
 	
@@ -315,7 +306,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setUnits(UIUnit[] units) {
-		this.openTab(CARGO);
+		this.openTab(CARGO_LABEL);
 		this.units = units;
 	}
 	
@@ -327,10 +318,10 @@ public class UIJob extends UIModel {
 		this.openJob();
 		this.openTab("Cargo");
 		
-		if (this.getCargoTab() == tab) { return; }
+		if (this.getCargoTab() == cargoTab) { return; }
 		
 		String xpathToClick = "";
-		switch (tab) {
+		switch (cargoTab) {
 			case "Packages":
 				xpathToClick = PACKAGES_CARGO_TAB_XPATH;
 				break;
@@ -348,6 +339,9 @@ public class UIJob extends UIModel {
 		this.cargoTab = cargoTab;
 	}
 	
+	public void addUnit() { addUnits(1, "20' DC"); }
+	public void addUnit(String unitType) { addUnits(1, unitType); }
+	public void addUnits(int numUnits) { addUnits(numUnits, "20' DC"); }
 	public void addUnits(int numUnits, String unitType) {
 		this.openCargoTab("Units");
 		

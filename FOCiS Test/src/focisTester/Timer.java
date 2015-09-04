@@ -3,7 +3,7 @@
 // Keeps track of how much time the browser spends where and doing what
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-package workflowRunner;
+package focisTester;
 
 public class Timer {
 

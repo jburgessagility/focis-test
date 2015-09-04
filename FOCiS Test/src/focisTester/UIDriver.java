@@ -1,7 +1,13 @@
-package workflowRunner;
+package focisTester;
+
+import java.io.File;
+import java.util.HashMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,17 +19,36 @@ public class UIDriver {
 	private static final String PRODUCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct']";
 	private static final String PRODUCT_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProductType']";
 	private static final String CREATE_BUTTON_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_btnCreateBooking']";
-	private static final String STAKEHOLDER_PICKER_NAME_XPATH = "//*[@id='gs_StakeholderName']";
 	
 	private WebDriver driver;
 	private WebDriverWait wait;
 	private Timer timer = new Timer();
+	private HashMap<String, String> args;
 	
 	public void setup(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 	} // setup
 	
+	public UIDriver(HashMap<String, String> args) {
+		
+		this.args = args;
+		
+		switch (this.args.get("browser")) {
+			case "firefox":
+				driver = new FirefoxDriver();
+				break;
+			case "chrome":
+				driver = new ChromeDriver();
+				break;
+			case "internetExplorer":
+			default: 
+				File file = new File(this.args.get("iePath"));
+				System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+				driver = new InternetExplorerDriver(); 
+		}
+		wait = new WebDriverWait(driver, 30);
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Common navigation macros
@@ -35,6 +60,7 @@ public class UIDriver {
 		driver.get("http://10.138.77.88:222/");
 		
 		timer.setMode("Populate Login Page");
+		
 		driver.findElement(By.xpath(USERNAME_XPATH)).sendKeys("jburgess");
 	  driver.findElement(By.xpath(PASSWORD_XPATH)).clear();
 	  driver.findElement(By.xpath(PASSWORD_XPATH)).sendKeys("q");
@@ -72,6 +98,17 @@ public class UIDriver {
 	/////////////////////////////////////////////////////////////////////////////////
 	// Safe navigation methods
 	/////////////////////////////////////////////////////////////////////////////////
+	
+	public String navigateTo(String url) {
+		while (true) {
+			try {
+				driver.get(url);
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			}
+		}
+	}
 	
 	public String getText(String xpath) {
 		while (true) {

@@ -1,0 +1,5 @@
+{
+	url: "http://10.138.77.88:222/",
+	browser: "internetExplorer",
+	iePath: "C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe"
+}
