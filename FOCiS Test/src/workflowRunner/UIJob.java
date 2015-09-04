@@ -1,11 +1,6 @@
 package workflowRunner;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-public class Job {
+public class UIJob extends UIModel {
 	
 	private static final String MAIN = "Main";
 	private static final String CARGO = "Cargo";
@@ -19,8 +14,8 @@ public class Job {
 	private static final String SERVICES_TAB_XPATH = "//*[@id='LiServices']";
 	private static final String EVENTS_TAB_XPATH = "//*[@id='LiEvents']";
 	
-	private static final String PRODUCT_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct";
-	private static final String PRODUCT_TYPE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType";
+	private static final String PRODUCT_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
+	private static final String PRODUCT_TYPE_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
 	private static final String PLACE_OF_RECEIPT_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode";
 	private static final String PLACE_OF_RECEIPT_NAME_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt";
 	private static final String PLACE_OF_DELIVERY_CODE_ID = "PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode";
@@ -53,14 +48,7 @@ public class Job {
 	private static final String CONTINUE_DIALOG_XPATH = "//*[@id='btnUnitContinue']";
 	private static final String PLAN_ROUTE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddRoute']";
 	
-	// Web Driver
-//	private WebDriver driver;
-//	private WebDriverWait wait;
-	private UIDriver uiDriver = WorkflowRunner.uiDriver;
-	
 	// Header
-	private String product;
-	private String productType;
 	private String placeOfReceipt;
 	private String placeOfDelivery;
 	private String incoterms;
@@ -68,10 +56,10 @@ public class Job {
 	private String tab;
 	
 	// Main Tab
-	private String shipper;
-	private String consignee;
-	private String notifyParty;
-	private String thirdParty;
+	private UIStakeholder shipper = new UIStakeholder();
+	private UIStakeholder consignee = new UIStakeholder();
+	private UIStakeholder notifyParty = new UIStakeholder();
+	private UIStakeholder thirdParty = new UIStakeholder();
 	private String shipperMovement;
 	private String consigneeMovement;
 	private String thirdPartyMovement;
@@ -83,13 +71,9 @@ public class Job {
 	// Cargo Tab
 	private String cargoTab;
 	private String measurementSystem;
-	private Package[] packages;
-	private Unit[] units;
+	private UIPackage[] packages;
+	private UIUnit[] units;
 	
-//	public void setup(WebDriver driver, WebDriverWait wait) {
-//		this.driver = driver;
-//		this.wait = wait;
-//	}
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Page and Tab Navigation
@@ -144,21 +128,23 @@ public class Job {
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	public String getProduct() {
-		return product;
+		this.openJob();
+		return uiDriver.getText(PRODUCT_XPATH);
 	}
 	
 	public void setProduct(String product) {
 		this.openJob();
-		this.product = product;
+		uiDriver.setDropdown(PRODUCT_XPATH, product);
 	}
 	
 	public String getProductType() {
-		return productType;
+		this.openJob();
+		return uiDriver.getText(PRODUCT_TYPE_XPATH);
 	}
 	
 	public void setProductType(String productType) {
 		this.openJob();
-		this.productType = productType;
+		uiDriver.setDropdown(PRODUCT_TYPE_XPATH, productType);
 	}
 	
 	public String getPlaceOfReceipt() {
@@ -204,44 +190,40 @@ public class Job {
 	// Main Tab
 	/////////////////////////////////////////////////////////////////////////////////
 	
-	public String getShipper() {
+	public UIStakeholder getShipper() {
 		return shipper;
 	}
 	
-	public void setShipper(String shipper) {
+	public void setShipper(String shipperName) {
 		this.openTab(MAIN);
-    uiDriver.setStakeholder(SHIPPER_XPATH, shipper);
-		this.shipper = shipper;
+		shipper.set(SHIPPER_XPATH, shipperName);
 	}
 	
-	public String getConsignee() {
+	public UIStakeholder getConsignee() {
 		return consignee;
 	}
 	
-	public void setConsignee(String consignee) {
+	public void setConsignee(String consigneeName) {
 		this.openTab(MAIN);
-		uiDriver.setStakeholder(CONSIGNEE_XPATH, consignee);
-		this.consignee = consignee;
+		consignee.set(CONSIGNEE_XPATH, consigneeName);
 	}
 	
-	public String getNotifyParty() {
+	public UIStakeholder getNotifyParty() {
 		return notifyParty;
 	}
 	
-	public void setNotifyParty(String notifyParty) {
+	public void setNotifyParty(String notifyPartyName) {
 		this.openTab(MAIN);
-		uiDriver.setStakeholder(NOTIFY_PARTY_XPATH, notifyParty);
-		this.notifyParty = notifyParty;
+		notifyParty.set(NOTIFY_PARTY_XPATH, notifyPartyName);
 	}
 	
-	public String getThirdParty() {
+	public UIStakeholder getThirdParty() {
 		return thirdParty;
 	}
 	
-	public void setThirdParty(String thirdParty) {
+	public void setThirdParty(String thirdPartyName) {
 		this.openTab(MAIN);
-		uiDriver.setStakeholder(THIRD_PARTY_XPATH, thirdParty);
-		this.thirdParty = thirdParty;
+		thirdParty.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
 	public String getShipperMovement() {
@@ -262,8 +244,18 @@ public class Job {
 		openTab(MAIN);
 		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, consigneeMovement);
 		this.consigneeMovement = consigneeMovement;
-	}
+	} // setConsigneemovement
 
+	public String getThirdPartyMovement() {
+		return thirdPartyMovement;
+	} // getThirdPartyMovement
+
+	public void setThirdPartyMovement(String thirdPartyMovement) {
+		openTab(MAIN);
+		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, thirdPartyMovement);
+		this.thirdPartyMovement = thirdPartyMovement;
+	} // setThirdPartyMovement
+	
 	public boolean getRequireSQSTBL() {
 		return requireSQSTBL;
 	} // getRequireSQSTBL
@@ -298,6 +290,7 @@ public class Job {
 	/////////////////////////////////////////////////////////////////////////////////
 	// Cargo Tab
 	/////////////////////////////////////////////////////////////////////////////////
+	
 	public String getMeasurementSystem() {
 		return measurementSystem;
 	}
@@ -308,20 +301,20 @@ public class Job {
 		this.measurementSystem = measurementSystem;
 	}
 	
-	public Package[] getPackages() {
+	public UIPackage[] getPackages() {
 		return packages;
 	}
 	
-	public void setPackages(Package[] packages) {
+	public void setPackages(UIPackage[] packages) {
 		this.openTab(CARGO);
 		this.packages = packages;
 	}
 	
-	public Unit[] getUnits() {
+	public UIUnit[] getUnits() {
 		return units;
 	}
 	
-	public void setUnits(Unit[] units) {
+	public void setUnits(UIUnit[] units) {
 		this.openTab(CARGO);
 		this.units = units;
 	}
@@ -372,11 +365,23 @@ public class Job {
 		String unitXpath = getUnitXpath(unitNum);
 		
 		uiDriver.click(unitXpath + "/descendant::div[@title='Edit Unit']");
-		
 		uiDriver.enterText(unitXpath + "/descendant::input[@name='UnitNumber']", unitNumber);
-		uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMGrossWeight']", String.valueOf(grossWeight));
-		uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMNetWeight']", String.valueOf(netWeight));
-		uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMVolumeCBM']", String.valueOf(volume));
+		
+		switch (getMeasurementSystem()) {
+			case "Metric":
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMGrossWeight']", String.valueOf(grossWeight));
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMNetWeight']", String.valueOf(netWeight));
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMVolumeCBM']", String.valueOf(volume));
+				break;
+			case "Imperial":
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainGrossWeight']", String.valueOf(grossWeight));
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainNetWeight']", String.valueOf(netWeight));
+				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainVolumeCBM']", String.valueOf(volume));
+				break;
+			default:
+				return;
+		} // switch
+
 		uiDriver.setDropdown(unitXpath + "/descendant::select[@name='SealingParty']", sealingParty);
 		uiDriver.enterText(unitXpath + "/descendant::input[@name='SealNumber']", sealNumber);
 		uiDriver.setCheckbox(unitXpath + "/descendant::input[@name='IsShipperOwnedContainer']", isShipperOwned);

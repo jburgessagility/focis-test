@@ -1,6 +1,6 @@
 package workflowRunner;
 
-public class Unit {
+public class UIUnit {
 	
 	
 	private String unitNumber;

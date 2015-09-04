@@ -35,7 +35,7 @@ public class UIDriver {
 		driver.get("http://10.138.77.88:222/");
 		
 		timer.setMode("Populate Login Page");
-		driver.findElement(By.xpath(USERNAME_XPATH)).sendKeys(WorkflowRunner.accname);
+		driver.findElement(By.xpath(USERNAME_XPATH)).sendKeys("jburgess");
 	  driver.findElement(By.xpath(PASSWORD_XPATH)).clear();
 	  driver.findElement(By.xpath(PASSWORD_XPATH)).sendKeys("q");
 	  
@@ -73,6 +73,17 @@ public class UIDriver {
 	// Safe navigation methods
 	/////////////////////////////////////////////////////////////////////////////////
 	
+	public String getText(String xpath) {
+		while (true) {
+			try {
+				return driver.findElement(By.xpath(xpath)).getText();
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			}
+		}
+	}
+	
 	public void enterText(String xpath, String text) {
 		while (true) {
 			try {
@@ -81,9 +92,23 @@ public class UIDriver {
 				break;
 			}
 			catch (Exception e) {
-				// System.out.println(e);
+				//System.out.println(e);
 			}
 		}
+		finishLoading();
+	}
+	
+	public void clearText(String xpath) {
+		while (true) {
+			try {
+				driver.findElement(By.xpath(xpath)).clear();
+				break;
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			}
+		}
+		finishLoading();
 	}
 
 	public void click(String xpath) {
@@ -96,6 +121,7 @@ public class UIDriver {
 				//System.out.println(e);
 			}
 		}
+		finishLoading(); 
 	}
 	
 	public void setCheckbox(String xpath, boolean status) {
@@ -120,18 +146,12 @@ public class UIDriver {
 				break;
 			}
 			catch (Exception e) {
-				//System.out.println(e);
+				System.out.println(e);
 			}
 		}
 
 		finishLoading(); 
 	} // setDropdown
-	
-	public void setStakeholder(String xpath, String stakeholder) {   
-    clickAndWaitForElement(xpath+"/descendant::button[1]", STAKEHOLDER_PICKER_NAME_XPATH);
-    driver.findElement(By.id("gs_StakeholderName")).sendKeys(stakeholder);
-    clickAndWaitForText("//a[text()='"+stakeholder+"']", xpath+"/descendant::input[4]", stakeholder);
-	} // setStakeholder
 
 	public void clickAndWaitForElement(String xpathToClick, String xpathToWait) {
 		//System.out.println("xpathToClick: "+xpathToClick+", xpathToWait: "+xpathToWait);

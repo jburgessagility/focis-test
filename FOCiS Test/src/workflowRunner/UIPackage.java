@@ -1,6 +1,6 @@
 package workflowRunner;
 
-public class Package {
+public class UIPackage {
 
 	private String marksAndNumbers;
 	private int noOfPackages;
