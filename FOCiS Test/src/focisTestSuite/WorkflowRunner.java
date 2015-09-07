@@ -32,6 +32,7 @@ public class WorkflowRunner {
 		params.put("iePath", "C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe");
 				
 		FOCiSTester ft = new FOCiSTester(params);
+		
 		UIJob job = FOCiSTester.job;
 		
 		
@@ -41,18 +42,20 @@ public class WorkflowRunner {
 		
 		job.blankJob();
 		
-		job.setShipper("AIA Engineering Limited");
-		job.setShipperMovement("Door to CY (Point of Loading)");
-		job.setConsignee("Presspart Manufacturing Ltd");
-		job.setConsigneeMovement("CY (Point of Loading) to Door");
+//		job.setShipper("AIA Engineering Limited");
+//		job.setShipperMovement("Door to CY (Point of Loading)");
+//		job.setConsignee("Presspart Manufacturing Ltd");
+//		job.setConsigneeMovement("CY (Point of Loading) to Door");
 		job.setRequireFCR(true);
+		
+		ft.test("FCR Set", job.getRequireFCR(), true);
 
-		job.setMeasurementSystem("Imperial");
-		job.addUnits(4, "20' DC");
-		job.setUnit(1, "MSCU1234566", 12.5, 4.2, 1.2, "Shipper", "Hi Janaki!", false);
-		job.setUnit(2, "MSCU2345672", 14.2, 3.1, 4.6, "Shipper", "Hi Praveen!", false);
-		job.setUnit(3, "MSCU3456789", 22.5, 4.2, 2.2, "Shipper", "Hi Ashwath!", false);
-		job.setUnit(4, "MSCU4567895", 122.52, 120.2, 4.2, "Shipper", "Hi Phani!", false);
+//		job.setMeasurementSystem("Imperial");
+//		job.addUnits(4, "20' DC");
+//		job.setUnit(1, "MSCU1234566", 12.5, 4.2, 1.2, "Shipper", "Hi Janaki!", false);
+//		job.setUnit(2, "MSCU2345672", 14.2, 3.1, 4.6, "Shipper", "Hi Praveen!", false);
+//		job.setUnit(3, "MSCU3456789", 22.5, 4.2, 2.2, "Shipper", "Hi Ashwath!", false);
+//		job.setUnit(4, "MSCU4567895", 122.52, 120.2, 4.2, "Shipper", "Hi Phani!", false);
 		
 	} // main
 } // WorkflowRunner

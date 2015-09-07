@@ -9,7 +9,7 @@ public class UIUser extends UIModel {
 	private static final String LOGIN_XPATH = "//*[@id='Login1_LoginButton']";
 	
 	public void login(String username, String password) {
-		uiDriver.navigateTo(WorkflowRunner.url);
+		uiDriver.navigateTo(FOCiSTester.getURL());
 		uiDriver.enterText(USERNAME_XPATH, username);
 		uiDriver.enterText(PASSWORD_XPATH, password);
 		uiDriver.click(LOGIN_XPATH);

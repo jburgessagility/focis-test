@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class FOCiSTester {
 
-	private HashMap<String, String> args;
+	private static HashMap<String, String> args;
 	private UIDriver uiDriver;
 	
 	public static UIJob job;
@@ -17,7 +17,7 @@ public class FOCiSTester {
 	public static UIStakeholder stakeholder;
 	
 	public FOCiSTester(HashMap<String, String> args) {
-		this.args = args;
+		FOCiSTester.args = args;
 		uiDriver = new UIDriver(args);
 		
 		job = new UIJob(uiDriver);
@@ -28,10 +28,25 @@ public class FOCiSTester {
 	/////////////////////////////////////////////////////////////////////////////////
 	// Getters
 	/////////////////////////////////////////////////////////////////////////////////
-	public String getURL() { return args.get("url"); }
+	public static String getURL() { return args.get("url"); }
 	public String getDefaultUser() { return args.get("defaultUser"); }
 	public String getDefaultPassword() { return args.get("defaultPassword"); }
 	public String getBrowser() { return args.get("browser"); }
 	public String getBrowserVersion() { return args.get("browserVersion"); }
 	public String getIEPath() { return args.get("iePath"); }
+	
+	
+	public boolean test(String name, Object a, Object b) {
+		boolean result = (a == b);
+		output(name, result);
+		return result;
+	}
+	
+	private void output(String name, boolean result) {
+		if (result) { 
+			System.out.println(name+": Pass");
+		} else { 
+			System.out.println(name+": Fail"); 
+		}
+	}
 }
