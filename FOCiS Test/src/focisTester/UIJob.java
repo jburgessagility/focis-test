@@ -14,26 +14,44 @@ public class UIJob extends UIModel {
 	private static final String SERVICES_TAB_XPATH = "//*[@id='LiServices']";
 	private static final String EVENTS_TAB_XPATH = "//*[@id='LiEvents']";
 	
-	private static final String PRODUCT_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
-	private static final String PRODUCT_TYPE_XPATH = "//*[id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
+	private static final String PRODUCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
+	private static final String PRODUCT_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
 	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
 	private static final String PLACE_OF_RECEIPT_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt']";
 	private static final String PLACE_OF_DELIVERY_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']";
 	private static final String PLACE_OF_DELIVERY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery']";
-	private static final String ORIGIN_BRANCH_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
-	private static final String DESTINATION_BRANCH_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
+	private static final String ORIGIN_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
+	private static final String DESTINATION_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
+	private static final String PORT_OF_LOADING_XPATH ="//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPOLCode']";
+	private static final String PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPODCode']";
 	private static final String INCOTERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']";
 	private static final String INCOTERMS_LOCATION_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']";
 	
-	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
-	private static final String REQUIRE_FCR_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2']";
-	private static final String REQUIRE_FCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3']";
 	private static final String SHIPPER_XPATH = "//*[@id='1_PartyRow']";
 	private static final String CONSIGNEE_XPATH = "//*[@id='2_PartyRow']";
 	private static final String NOTIFY_PARTY_XPATH = "//*[@id='3_PartyRow']";
 	private static final String THIRD_PARTY_XPATH = "//*[@id='4_PartyRow']";
 	private static final String SHIPPER_MOVEMENT_XPATH = "//*[@id='1_PartyRow']/descendant::select[1]";
 	private static final String CONSIGNEE_MOVEMENT_XPATH = "//*[@id='2_PartyRow']/descendant::select[1]";
+
+	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
+	private static final String REQUIRE_FCR_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2']";
+	private static final String REQUIRE_FCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3']";
+	private static final String REQUIRED_SEAQUEST_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpCustomerReqBLType']";
+	private static final String INVOICE_VALUE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceValue']";
+	private static final String INVOICE_CURRENCY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceCurrencyCode']";
+	private static final String REQUIRE_LETTER_OF_CREDIT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkLC']";
+	private static final String REQUIRE_INSURANCE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkLC']";
+	private static final String ORIGIN_CUSTOMS_CLEARANCE_BY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpOriginClearanceBy']";
+	private static final String ORIGIN_CUSTOMS_CLEARANCE_BY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtOriginLocation']";
+	private static final String DESTINATION_CUSTOMS_CLEARANCE_BY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpDestClearanceBy']";
+	private static final String DESTINATION_CUSTOMS_CLEARANCE_BY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtDestLocation']";
+	private static final String CARGO_AVAILABLE_DATE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtCargoAvailableDate']";
+	private static final String MBL_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType']";
+	private static final String MBL_TERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms']";
+	private static final String VOLUMETRIC_RATIO_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtVolumetricRatio']";
+	private static final String NUMBER_OF_EURO_PALLETS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtNoOfEuroPallets']";
+	private static final String EURO_PALLET_REFERENCES_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtEuroPalletReference']";
 	
 	private static final String MEASUREMENT_SYSTEM_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_drpMeasurementSystem']";
 	private static final String PACKAGES_CARGO_TAB_XPATH = "//*[@href='#PackageDetailsTab']";
@@ -44,7 +62,6 @@ public class UIJob extends UIModel {
 	private static final String ADD_UNITS_XPATH = "//*[@data-original-title='Add / View Units']";
 	private static final String SAVE_UNITS_XPATH = "//*[@data-original-title='Save Unit']";
 	
-	
 	private static final String UNITS_REQUESTED_XPATH = "//input[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_UnitDetailsFr1_txtDummyUnitNoOfRequest']";
 	private static final String UNIT_TYPE_XPATH = "//select[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_UnitDetailsFr1_drpUnitType']";
 	private static final String ADD_UNITS_DIALOG_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_UnitDetailsFr1_btnAddUnitDetails']";
@@ -53,10 +70,6 @@ public class UIJob extends UIModel {
 	
 	private static final String PLAN_ROUTE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddRoute']";
 
-	private boolean requireSQSTBL;
-	private boolean requireFCR;
-	private boolean requireFCT;
-	
 	// Cargo Tab
 	private String cargoTab;
 	private String measurementSystem;
@@ -120,7 +133,7 @@ public class UIJob extends UIModel {
 	
 	public String getProduct() {
 		this.openTab(MAIN_LABEL);
-		return uiDriver.getText(PRODUCT_XPATH);
+		return uiDriver.getValue(PRODUCT_XPATH);
 	}
 	
 	public void setProduct(String product) {
@@ -130,7 +143,7 @@ public class UIJob extends UIModel {
 	
 	public String getProductType() {
 		this.openTab(MAIN_LABEL);
-		return uiDriver.getText(PRODUCT_TYPE_XPATH);
+		return uiDriver.getValue(PRODUCT_TYPE_XPATH);
 	}
 	
 	public void setProductType(String productType) {
@@ -138,14 +151,14 @@ public class UIJob extends UIModel {
 		uiDriver.setDropdown(PRODUCT_TYPE_XPATH, productType);
 	}
 	
-//	public String getPlaceOfReceipt() {
-//		this.openTab(MAIN_LABEL);
-//		//return placeOfReceipt;
-//	}
+	public String getPlaceOfReceipt() {
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(PLACE_OF_RECEIPT_CODE_XPATH);
+	}
 	
 	public void setPlaceOfReceipt(String placeOfReceipt) {
 		this.openTab(MAIN_LABEL);
-		//this.placeOfReceipt = placeOfReceipt;
+		//TODO
 	}
 	
 	public String getPlaceOfDelivery() {
@@ -155,11 +168,49 @@ public class UIJob extends UIModel {
 	
 	public void setPlaceOfDelivery(String placeOfDelivery) {
 		this.openTab(MAIN_LABEL);
+		//TODO
+	}
+	
+	public String getOriginBranch() {
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(ORIGIN_BRANCH_XPATH);
+	}
+	
+	public void setOriginBranch(String originBranch) {
+		//TODO
+	}
+	
+	public String getDestinationBranch() {
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(DESTINATION_BRANCH_XPATH);
+	}
+	
+	public void setDestinationBranch(String destinationBranch) {
+		this.openTab(MAIN_LABEL);
+		//TODO
+	}
+
+	public String getPortOfLoading() {
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(PORT_OF_LOADING_XPATH);
+	}
+	
+	public void setPortOfLoading(String portOfLoading) {
+		//TODO
+	}
+	
+	public String getPortOfDischarge() {
+		this.openTab(MAIN_LABEL);
+		return uiDriver.getText(PORT_OF_DISCHARGE_XPATH);
+	}
+	
+	public void setPortOfDischage(String portOfDischarge) {
+		//TODO
 	}
 	
 	public String getIncoterms() {
 		this.openTab(MAIN_LABEL);
-		return uiDriver.getText(INCOTERMS_XPATH);
+		return uiDriver.getValue(INCOTERMS_XPATH);
 	}
 	
 	public void setIncoterms(String incoterms) {
@@ -183,6 +234,7 @@ public class UIJob extends UIModel {
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	public String getShipper() {
+		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(SHIPPER_XPATH);
 	}
 	
@@ -192,6 +244,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getConsignee() {
+		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(CONSIGNEE_XPATH);
 	}
 	
@@ -201,6 +254,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getNotifyParty() {
+		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(NOTIFY_PARTY_XPATH);
 	}
 	
@@ -210,16 +264,18 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getThirdParty() {
+		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(THIRD_PARTY_XPATH);
 	}
 	
 	public void setThirdParty(String thirdPartyName) {
-		this.openTab(MAIN_LABEL);
+		openTab(MAIN_LABEL);
 		FOCiSTester.stakeholder.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
 	public String getShipperMovement() {
-		return uiDriver.getText(SHIPPER_MOVEMENT_XPATH);
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(SHIPPER_MOVEMENT_XPATH);
 	} // getShipperMovement
 	
 	public void setShipperMovement(String shipperMovement) {
@@ -227,8 +283,24 @@ public class UIJob extends UIModel {
 		uiDriver.setDropdown(SHIPPER_MOVEMENT_XPATH, shipperMovement);
 	} // setShipperMovement
 	
+	public String getShipperBillToParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillToParty(SHIPPER_XPATH);
+	}
+	
+	public void setShipperBillToParty() {
+		openTab(MAIN_LABEL);
+		//TODO
+	}
+	
+	public String getShipperBillingParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillingParty(SHIPPER_XPATH);
+	}
+	
 	public String getConsigneeMovement() {
-		return uiDriver.getText(CONSIGNEE_MOVEMENT_XPATH);
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(CONSIGNEE_MOVEMENT_XPATH);
 	} // getConsigneeMovement
 
 	public void setConsigneeMovement(String consigneeMovement) {
@@ -236,6 +308,19 @@ public class UIJob extends UIModel {
 		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, consigneeMovement);
 	} // setConsigneemovement
 
+	public String getConsigneeBillToParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillToParty(CONSIGNEE_XPATH);
+	}
+	
+	public void setConsigneeBillToParty() {
+		openTab(MAIN_LABEL);
+	}
+	
+	public String getConsigneeBillingParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillingParty(CONSIGNEE_XPATH);
+	}
 	
 	// TODO
 //	public String getThirdPartyMovement() {
@@ -248,35 +333,109 @@ public class UIJob extends UIModel {
 //	} // setThirdPartyMovement
 	
 	public boolean getRequireSQSTBL() {
-		return requireSQSTBL;
+		openTab(MAIN_LABEL);
+		return uiDriver.getCheckboxValue(REQUIRE_SQSTBL_XPATH);
 	} // getRequireSQSTBL
 	
 	public void setRequireSQSTBL(boolean requireSQSTBL) {
 		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_SQSTBL_XPATH, requireSQSTBL);
-		this.requireSQSTBL = requireSQSTBL;
 	} // setRequireSQSTBL
 	
 	public boolean getRequireFCR() {
-		return requireFCR;
+		openTab(MAIN_LABEL);
+		return uiDriver.getCheckboxValue(REQUIRE_FCR_XPATH);
 	} // getRequireFCR
 	
 	public void setRequireFCR(boolean requireFCR) {
 		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCR_XPATH, requireFCR);
-		this.requireFCR = requireFCR;
 	} // setRequireFCR
 	
 	public boolean getRequireFCT() {
-		return requireFCT;
+		openTab(MAIN_LABEL);
+		return uiDriver.getCheckboxValue(REQUIRE_FCT_XPATH);
 	} // getRequireFCT
 	
 	public void setRequireFCT(boolean requireFCT) {
 		openTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCT_XPATH, requireFCT);
-		this.requireFCT = requireFCT;
 	} // setRequireFCT
 	
+	public String getRequiredSeaquestType() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(REQUIRED_SEAQUEST_TYPE_XPATH);
+	} // getRequiredSeaquestType
+	
+	public String getInvoiceValue() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(INVOICE_VALUE_XPATH);
+	}
+	
+	public String getInvoiceCurrency() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(INVOICE_CURRENCY_XPATH);
+	}
+	
+	public boolean getRequireLetterOfCredit() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getCheckboxValue(REQUIRE_LETTER_OF_CREDIT_XPATH);
+	}
+	
+	public boolean getRequireInsurance() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getCheckboxValue(REQUIRE_INSURANCE_XPATH);
+	}
+	
+	public String getOriginCustomsClearanceBy() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(ORIGIN_CUSTOMS_CLEARANCE_BY_XPATH);
+	}
+	
+	public String getOriginCustomsClearanceByName() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(ORIGIN_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
+	}
+	
+	public String getDestinationCustomsClearanceBy() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(DESTINATION_CUSTOMS_CLEARANCE_BY_XPATH);
+	}
+	
+	public String getDestinationCustomsClearanceByName() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(DESTINATION_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
+	}
+	
+	public String getCargoAvailableDate() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(CARGO_AVAILABLE_DATE_XPATH);
+	}
+	
+	public String getMBLType() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(MBL_TYPE_XPATH);
+	}
+	
+	public String getMBLTerms() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(MBL_TERMS_XPATH);
+	}
+	
+	public String getVolumetricRatio() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getValue(VOLUMETRIC_RATIO_XPATH);
+	}
+	
+	public String getNumberOfEuroPallets() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(NUMBER_OF_EURO_PALLETS_XPATH);
+	}
+	
+	public String getEuroPalletReferences() {
+		openTab(MAIN_LABEL);
+		return uiDriver.getText(EURO_PALLET_REFERENCES_XPATH);
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Cargo Tab

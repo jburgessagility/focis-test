@@ -12,6 +12,8 @@ public class FOCiSTester {
 	private static HashMap<String, String> args;
 	private UIDriver uiDriver;
 	
+	private String testCategory;
+	
 	public static UIJob job;
 	public static UIUser user;
 	public static UIStakeholder stakeholder;
@@ -35,18 +37,22 @@ public class FOCiSTester {
 	public String getBrowserVersion() { return args.get("browserVersion"); }
 	public String getIEPath() { return args.get("iePath"); }
 	
+	public void setTestCategory(String testCategory) {
+		this.testCategory = testCategory;
+	}
 	
 	public boolean test(String name, Object a, Object b) {
-		boolean result = (a == b);
+		boolean result = a.equals(b);
 		output(name, result);
+		// System.out.println(a+" = "+b+" ?");
 		return result;
 	}
 	
 	private void output(String name, boolean result) {
 		if (result) { 
-			System.out.println(name+": Pass");
+			System.out.println("PASS : "+testCategory+" - "+name);
 		} else { 
-			System.out.println(name+": Fail"); 
+			System.out.println("FAIL : "+testCategory+" - "+name); 
 		}
 	}
 }

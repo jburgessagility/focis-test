@@ -40,16 +40,19 @@ public class WorkflowRunner {
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
 		
-		job.blankJob();
+		TestMain.run(ft);
 		
+		
+//		job.blankJob();
+//		
 //		job.setShipper("AIA Engineering Limited");
 //		job.setShipperMovement("Door to CY (Point of Loading)");
 //		job.setConsignee("Presspart Manufacturing Ltd");
 //		job.setConsigneeMovement("CY (Point of Loading) to Door");
-		job.setRequireFCR(true);
-		
-		ft.test("FCR Set", job.getRequireFCR(), true);
-
+//		job.setRequireFCR(true);
+//		
+//		ft.test("FCR Set", job.getRequireFCR(), true);
+//
 //		job.setMeasurementSystem("Imperial");
 //		job.addUnits(4, "20' DC");
 //		job.setUnit(1, "MSCU1234566", 12.5, 4.2, 1.2, "Shipper", "Hi Janaki!", false);

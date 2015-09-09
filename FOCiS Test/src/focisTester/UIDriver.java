@@ -116,6 +116,17 @@ public class UIDriver {
 				return driver.findElement(By.xpath(xpath)).getText();
 			}
 			catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	public String getValue(String xpath) {
+		while (true) {
+			try {
+				return new Select(driver.findElement(By.xpath(xpath))).getFirstSelectedOption().getText();
+			}
+			catch (Exception e) {
 				//System.out.println(e);
 			}
 		}
@@ -161,6 +172,17 @@ public class UIDriver {
 		finishLoading(); 
 	}
 	
+	public boolean getCheckboxValue(String xpath) {
+		while (true) {
+			try {
+    			return driver.findElement(By.xpath(xpath)).isSelected();
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			} // catch
+		} // while
+	} // setCheckbox
+	
 	public void setCheckbox(String xpath, boolean status) {
 		while (true) {
 			try {
@@ -172,7 +194,7 @@ public class UIDriver {
 			catch (Exception e) {
 				//System.out.println(e);
 			}
-	}
+		}
 		finishLoading(); 
 	} // setCheckbox
 	
