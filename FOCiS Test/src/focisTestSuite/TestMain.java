@@ -8,11 +8,14 @@ public class TestMain {
 	public static void run(FOCiSTester ft) {
 		UIJob job = FOCiSTester.job;
 		
+		//TODO Set up user/branch/schedule
+		
 		job.blankJob();
 		
 		// Job Header
 		ft.setTestCategory("Blank Job Header Values");
 		ft.test("Job Header Expanded State", job.isJobHeaderExpanded(), true);
+		
 		ft.test("Product", job.getProduct(), "Ocean Freight");
 		ft.test("Product Type", job.getProductType(), "FCL (NVOCC)");
 		ft.test("Place of Receipt", job.getPlaceOfReceipt(), "");
@@ -29,6 +32,8 @@ public class TestMain {
 		
 		// Parties
 		ft.test("Parties Expanded State", job.isPartiesExpanded(), true);
+		ft.test("Additional Parties Expanded State", job.isAdditionalPartiesExpanded(), false);
+		
 		ft.test("Shipper", job.getShipper(), "");
 		ft.test("Shipper Movement Type", job.getShipperMovement(), "None");
 		ft.test("Shipper Bill To Party", job.getShipperBillToParty(), "");
@@ -39,10 +44,12 @@ public class TestMain {
 		ft.test("Consignee Bill To Party", job.getConsigneeBillToParty(), "");
 		ft.test("Consignee Billing Party", job.getConsigneeBillingParty(), "Select");
 
-		//TODO Notify party
+		ft.test("Notify Party", job.getNotifyParty(), "");
 		
-		//TODO Third party
-		
+		ft.test("Third Party", job.getThirdParty(), "");
+		ft.test("Third Party Movement Type", job.getThirdPartyMovement(), "None");
+		ft.test("Third Party Bill To Party", job.getThirdPartyBillToParty(), "");
+		ft.test("Third Party Billing Party", job.getThirdPartyBillingParty(), "Select");
 		
 		// Links
 		ft.test("Links Expanded State", job.isLinksExpanded(), true);
@@ -67,5 +74,8 @@ public class TestMain {
 		ft.test("Volumetric Ratio", job.getVolumetricRatio(), "1000");
 		ft.test("Number of Euro Pallets", job.getNumberOfEuroPallets(), "");
 		ft.test("Euro Pallet References", job.getEuroPalletReferences(), "");
+		
+		
+		//TODO Tear down user/branch/schedule/job
 	}
 }

@@ -29,12 +29,14 @@ public class UIJob extends UIModel {
 	private static final String INCOTERMS_LOCATION_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']";
 	
 	private static final String PARTIES_COLLAPSER_XPATH = "//*[@id='divPartyExpandOrColl']/span/i";
+	private static final String ADD_PARTIES_XPATH = "//*[@id='btnAddParties']";
 	private static final String SHIPPER_XPATH = "//*[@id='1_PartyRow']";
 	private static final String CONSIGNEE_XPATH = "//*[@id='2_PartyRow']";
 	private static final String NOTIFY_PARTY_XPATH = "//*[@id='3_PartyRow']";
 	private static final String THIRD_PARTY_XPATH = "//*[@id='4_PartyRow']";
 	private static final String SHIPPER_MOVEMENT_XPATH = "//*[@id='1_PartyRow']/descendant::select[1]";
 	private static final String CONSIGNEE_MOVEMENT_XPATH = "//*[@id='2_PartyRow']/descendant::select[1]";
+	private static final String THIRD_PARTY_MOVEMENT_XPATH = "//*[@id='4_PartyRow']/descendant::select[1]";
 	
 	private static final String LINKS_COLLAPSER_XPATH = "//*[@id='divLinksExpandOrColl']/span/i";
 
@@ -248,6 +250,22 @@ public class UIJob extends UIModel {
 		return uiDriver.hasClass(PARTIES_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
+	public boolean isAdditionalPartiesExpanded() {
+		openTab(MAIN_LABEL);
+		return uiDriver.hasClass(ADD_PARTIES_XPATH, "icon-collapse-alt");
+	}
+	
+	public void setAdditionalPartiesExpanded(boolean isExpanded) {
+		openTab(MAIN_LABEL);
+		if (isAdditionalPartiesExpanded() == isExpanded) { return; }
+		if (isExpanded) {
+			uiDriver.clickAndWaitForClass(ADD_PARTIES_XPATH, "icon-collapse-alt");
+		}
+		else {
+			uiDriver.clickAndWaitForClass(ADD_PARTIES_XPATH, "icon-expand-alt");
+		}
+	}
+	
 	public String getShipper() {
 		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(SHIPPER_XPATH);
@@ -275,6 +293,7 @@ public class UIJob extends UIModel {
 	
 	public void setNotifyParty(String notifyPartyName) {
 		this.openTab(MAIN_LABEL);
+		setAdditionalPartiesExpanded(true);
 		FOCiSTester.stakeholder.set(NOTIFY_PARTY_XPATH, notifyPartyName);
 	}
 	
@@ -285,6 +304,7 @@ public class UIJob extends UIModel {
 	
 	public void setThirdParty(String thirdPartyName) {
 		openTab(MAIN_LABEL);
+		setAdditionalPartiesExpanded(true);
 		FOCiSTester.stakeholder.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
@@ -337,15 +357,27 @@ public class UIJob extends UIModel {
 		return FOCiSTester.stakeholder.getBillingParty(CONSIGNEE_XPATH);
 	}
 	
-	// TODO
-//	public String getThirdPartyMovement() {
-//		return uiDriver.getText(THIRD_PARTY_MOVEMENT_XPATH);
-//	} // getThirdPartyMovement
-//
-//	public void setThirdPartyMovement(String thirdPartyMovement) {
-//		openTab(MAIN);
-//		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, thirdPartyMovement);
-//	} // setThirdPartyMovement
+	public String getThirdPartyMovement() {
+		openTab(MAIN_LABEL);
+		setAdditionalPartiesExpanded(true);
+		return uiDriver.getValue(THIRD_PARTY_MOVEMENT_XPATH);
+	} // getThirdPartyMovement
+
+	public void setThirdPartyMovement(String thirdPartyMovement) {
+		openTab(MAIN_LABEL);
+		setAdditionalPartiesExpanded(true);
+		uiDriver.setDropdown(THIRD_PARTY_MOVEMENT_XPATH, thirdPartyMovement);
+	} // setThirdPartyMovement
+	
+	public String getThirdPartyBillToParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillToParty(THIRD_PARTY_XPATH);
+	}
+	
+	public String getThirdPartyBillingParty() {
+		openTab(MAIN_LABEL);
+		return FOCiSTester.stakeholder.getBillingParty(THIRD_PARTY_XPATH);
+	}
 	
 	public boolean isLinksExpanded() {
 		openTab(MAIN_LABEL);
