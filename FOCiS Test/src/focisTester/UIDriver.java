@@ -116,7 +116,29 @@ public class UIDriver {
 				return driver.findElement(By.xpath(xpath)).getText();
 			}
 			catch (Exception e) {
-				System.out.println(e);
+				//System.out.println(e);
+			}
+		}
+	}
+	
+	public boolean hasClass(String xpath, String classToCheck) {
+		while (true) {
+			try {
+				return driver.findElement(By.xpath(xpath)).getAttribute("class").contains(classToCheck);
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			}
+		}
+	}
+	
+	public String getNumericText(String xpath) {
+		while (true) {
+			try {
+				return driver.findElement(By.xpath(xpath)).getAttribute("value");
+			}
+			catch (Exception e) {
+				//System.out.println(e);
 			}
 		}
 	}

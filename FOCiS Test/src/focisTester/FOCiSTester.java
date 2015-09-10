@@ -44,7 +44,7 @@ public class FOCiSTester {
 	public boolean test(String name, Object a, Object b) {
 		boolean result = a.equals(b);
 		output(name, result);
-		// System.out.println(a+" = "+b+" ?");
+		//System.out.println(a+" = "+b+" ?");
 		return result;
 	}
 	

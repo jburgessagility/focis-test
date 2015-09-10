@@ -14,6 +14,7 @@ public class UIJob extends UIModel {
 	private static final String SERVICES_TAB_XPATH = "//*[@id='LiServices']";
 	private static final String EVENTS_TAB_XPATH = "//*[@id='LiEvents']";
 	
+	private static final String JOB_HEADER_COLLAPSER_XPATH = "//*[@id='divHeaderExpandOrColl']/span/i";
 	private static final String PRODUCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
 	private static final String PRODUCT_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
 	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
@@ -27,13 +28,17 @@ public class UIJob extends UIModel {
 	private static final String INCOTERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']";
 	private static final String INCOTERMS_LOCATION_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']";
 	
+	private static final String PARTIES_COLLAPSER_XPATH = "//*[@id='divPartyExpandOrColl']/span/i";
 	private static final String SHIPPER_XPATH = "//*[@id='1_PartyRow']";
 	private static final String CONSIGNEE_XPATH = "//*[@id='2_PartyRow']";
 	private static final String NOTIFY_PARTY_XPATH = "//*[@id='3_PartyRow']";
 	private static final String THIRD_PARTY_XPATH = "//*[@id='4_PartyRow']";
 	private static final String SHIPPER_MOVEMENT_XPATH = "//*[@id='1_PartyRow']/descendant::select[1]";
 	private static final String CONSIGNEE_MOVEMENT_XPATH = "//*[@id='2_PartyRow']/descendant::select[1]";
+	
+	private static final String LINKS_COLLAPSER_XPATH = "//*[@id='divLinksExpandOrColl']/span/i";
 
+	private static final String CUSTOMER_REQUIREMENTS_COLLAPSER_XPATH = "//*[@id='divCustReqExpandOrColl']/span/i";
 	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
 	private static final String REQUIRE_FCR_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType2']";
 	private static final String REQUIRE_FCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType3']";
@@ -130,6 +135,11 @@ public class UIJob extends UIModel {
 	/////////////////////////////////////////////////////////////////////////////////
 	// Job Header
 	/////////////////////////////////////////////////////////////////////////////////
+	
+	public boolean isJobHeaderExpanded() {
+		openTab(MAIN_LABEL);
+		return uiDriver.hasClass(JOB_HEADER_COLLAPSER_XPATH, "icon-chevron-up");
+	}
 	
 	public String getProduct() {
 		this.openTab(MAIN_LABEL);
@@ -233,6 +243,11 @@ public class UIJob extends UIModel {
 	// Main Tab
 	/////////////////////////////////////////////////////////////////////////////////
 	
+	public boolean isPartiesExpanded() {
+		openTab(MAIN_LABEL);
+		return uiDriver.hasClass(PARTIES_COLLAPSER_XPATH, "icon-chevron-up");
+	}
+	
 	public String getShipper() {
 		openTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(SHIPPER_XPATH);
@@ -332,6 +347,16 @@ public class UIJob extends UIModel {
 //		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, thirdPartyMovement);
 //	} // setThirdPartyMovement
 	
+	public boolean isLinksExpanded() {
+		openTab(MAIN_LABEL);
+		return uiDriver.hasClass(LINKS_COLLAPSER_XPATH, "icon-chevron-up");
+	}
+	
+	public boolean isCustomerRequirementsExpanded() {
+		openTab(MAIN_LABEL);
+		return uiDriver.hasClass(CUSTOMER_REQUIREMENTS_COLLAPSER_XPATH, "icon-chevron-up");
+	}
+	
 	public boolean getRequireSQSTBL() {
 		openTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_SQSTBL_XPATH);
@@ -424,7 +449,7 @@ public class UIJob extends UIModel {
 	
 	public String getVolumetricRatio() {
 		openTab(MAIN_LABEL);
-		return uiDriver.getValue(VOLUMETRIC_RATIO_XPATH);
+		return uiDriver.getNumericText(VOLUMETRIC_RATIO_XPATH);
 	}
 	
 	public String getNumberOfEuroPallets() {

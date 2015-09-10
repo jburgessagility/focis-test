@@ -7,12 +7,12 @@ public class TestMain {
 
 	public static void run(FOCiSTester ft) {
 		UIJob job = FOCiSTester.job;
+		
 		job.blankJob();
 		
-		ft.setTestCategory("Blank Job Default Values");
-		
 		// Job Header
-		// TODO Check collapse state
+		ft.setTestCategory("Blank Job Header Values");
+		ft.test("Job Header Expanded State", job.isJobHeaderExpanded(), true);
 		ft.test("Product", job.getProduct(), "Ocean Freight");
 		ft.test("Product Type", job.getProductType(), "FCL (NVOCC)");
 		ft.test("Place of Receipt", job.getPlaceOfReceipt(), "");
@@ -25,9 +25,10 @@ public class TestMain {
 		ft.test("Incoterms Location", job.getIncotermsLocation(), "");
 		
 		// Main Tab
+		ft.setTestCategory("Blank Job Main Values");
 		
 		// Parties
-		// TODO Check collapse state
+		ft.test("Parties Expanded State", job.isPartiesExpanded(), true);
 		ft.test("Shipper", job.getShipper(), "");
 		ft.test("Shipper Movement Type", job.getShipperMovement(), "None");
 		ft.test("Shipper Bill To Party", job.getShipperBillToParty(), "");
@@ -37,14 +38,17 @@ public class TestMain {
 		ft.test("Consignee Movement Type", job.getConsigneeMovement(), "None");
 		ft.test("Consignee Bill To Party", job.getConsigneeBillToParty(), "");
 		ft.test("Consignee Billing Party", job.getConsigneeBillingParty(), "Select");
-		// test billing party
+
+		//TODO Notify party
+		
+		//TODO Third party
+		
 		
 		// Links
-		// TODO Check collapse state
-		
+		ft.test("Links Expanded State", job.isLinksExpanded(), true);
 		
 		// Customer Requirements
-		// TODO Check collapse state
+		ft.test("Customer Requirements Expanded State", job.isCustomerRequirementsExpanded(), true);
 		ft.test("Require Seaquest", job.getRequireSQSTBL(), true);
 		ft.test("Require FCR", job.getRequireFCR(), false);
 		ft.test("Require FCT", job.getRequireFCT(), false);
