@@ -186,7 +186,7 @@ public class UIDriver {
 			}
 		}
 	}
-	
+
 	public String getValue(String xpath) {
 		while (true) {
 			try {

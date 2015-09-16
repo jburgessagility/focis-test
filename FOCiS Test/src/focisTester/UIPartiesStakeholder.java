@@ -1,13 +1,13 @@
 package focisTester;
 
-public class UIStakeholder extends UIModel {
+public class UIPartiesStakeholder extends UIModel {
 
 	private static final String STAKEHOLDER_NAME_XPATH = "/descendant::input[contains(@id,'txtPartyName')]";
 	private static final String STAKEHOLDER_BILL_TO_PARTY_XPATH = "/descendant::input[contains(@id,'txtBillToPartyName')]";
 	private static final String STAKEHOLDER_BILLING_PARTY_XPATH = "/descendant::select[contains(@id,'grdPartyOrgComponent')]";
 	private static final String STAKEHOLDER_PICKER_NAME_XPATH = "//*[@id='gs_StakeholderName']";
 	
-	public UIStakeholder(UIDriver uiDriver) {
+	public UIPartiesStakeholder(UIDriver uiDriver) {
 		this.uiDriver = uiDriver;
 	}
 	

@@ -21,7 +21,7 @@ public class FOCiSTester {
 	
 	public static UIJob job;
 	public static UIUser user;
-	public static UIStakeholder stakeholder;
+	public static UIPartiesStakeholder stakeholder;
 	public static UILocation location;
 	public static UICarrierBooking carrierBooking;
 	
@@ -31,7 +31,7 @@ public class FOCiSTester {
 		uiDriver2 = uiDriver;
 		
 		job = new UIJob(uiDriver);
-		stakeholder = new UIStakeholder(uiDriver);
+		stakeholder = new UIPartiesStakeholder(uiDriver);
 		carrierBooking = new UICarrierBooking(uiDriver);
 		testCount = 0;
 		passCount = 0;

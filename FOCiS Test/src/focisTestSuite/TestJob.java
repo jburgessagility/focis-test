@@ -89,14 +89,14 @@ public class TestJob {
 		
 		// Customer Requirements
 		ft.test("Customer Requirements Expanded State", job.isCustomerRequirementsExpanded(), true);
-		ft.test("Require Seaquest", job.getRequireSQSTBL(), true);
-		ft.test("Require FCR", job.getRequireFCR(), false);
-		ft.test("Require FCT", job.getRequireFCT(), false);
-		ft.test("Required Seaquest Type", job.getRequiredSeaquestType(), "Select");
+		ft.test("Require Seaquest", job.requireSeaquest.get(), true);
+		ft.test("Require FCR", job.requireFCR.get(), false);
+		ft.test("Require FCT", job.requireFCT.get(), false);
+		ft.test("Required Seaquest Type", job.requiredSeaquestType.get(), "Select");
 		ft.test("Invoice Value", job.getInvoiceValue(), "");
 		ft.test("Invoice Currency", job.getInvoiceCurrency(), "");
-		ft.test("Require Letter of Credit", job.getRequireLetterOfCredit(), false);
-		ft.test("Require Insurance", job.getRequireInsurance(), false);
+		ft.test("Require Letter of Credit", job.requireLetterOfCredit.get(), false);
+		ft.test("Require Insurance", job.requireInsurance.get(), false);
 		ft.test("Origin Customs Clearance By default is Select", job.originCustomsClearanceBy.get(), "Select");
 		ft.test("Origin Customs Clearance By Name", job.originCustomsClearanceByName.get(), "");
 		ft.test("Destination Customs Clearance By is Select", job.destinationCustomsClearanceBy.get(), "Select");
