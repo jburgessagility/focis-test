@@ -48,27 +48,22 @@ public class FOCiSTester {
 	public String getBrowserVersion() { return args.get("browserVersion"); }
 	public String getIEPath() { return args.get("iePath"); }
 	
-	public void setTestCategory(String testCategory) {
-		this.testCategory = testCategory;
-	}
+	public void setTestCategory(String testCategory) { this.testCategory = testCategory; }
 	
 	public boolean test(String name, Object a, Object b) {
 		testCount++;
 		boolean result = a.equals(b);
-		if (result) { passCount++; } else { failCount++; }
-		output(name, result);
-		//System.out.println(a+" = "+b+" ?");
-		return result;
-	}
-	
-	private void output(String name, boolean result) {
 		if (result) { 
+			passCount++;
 			System.out.println(testCount+" PASS : "+testCategory+" - "+name);
-		} else { 
+		} 
+		else { 
+			failCount++; 
 			System.out.println(testCount+" FAIL : "+testCategory+" - "+name); 
 		}
+		return result;
 	}
-	
+
 	public void printResults() {
 		System.out.println("Count: "+testCount+", Pass: "+passCount+", Fail: "+failCount);
 	}

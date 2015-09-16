@@ -288,6 +288,17 @@ public class UIDriver {
 		} // while
 	}
 	
+	public boolean isVisible(String xpath) {
+		while (true) {
+			try {
+    			return driver.findElement(By.xpath(xpath)).isDisplayed();
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			} // catch
+		} // while
+	} // isVisible
+	
 	public void setDropdown(String xpath, String selection) {
 		while (true) {
 			try {

@@ -14,10 +14,11 @@ public class UIField {
 		labelXpath = groupXpath + "/descendant::span";
 	}
 	
-	public void set(String text) { uiDriver.enterText(inputXpath, text); }
-	public String get() {	return uiDriver.getText(inputXpath); }
+	public void set(Object value) { }
+	public Object get() {	return null; }
 	public String getLabel() { return uiDriver.getText(labelXpath);	}
 	public boolean isEditable() {	return uiDriver.isEditable(inputXpath); }
-	public boolean isReadOnly() {	return !uiDriver.isEditable(inputXpath); }
-	
-} // UIField
+	public boolean isReadOnly() {	return !isEditable(); }
+	public boolean isVisible() { return uiDriver.isVisible(inputXpath); }
+	public boolean isInvisible() { return !isVisible(); }
+}

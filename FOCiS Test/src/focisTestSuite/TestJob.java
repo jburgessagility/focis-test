@@ -20,16 +20,18 @@ public class TestJob {
 		
 		ft.test("Job Header Expanded State", job.isJobHeaderExpanded(), true);
 		
-		ft.test("Product", job.getProduct(), "Ocean Freight");
-		ft.test("Product Type", job.getProductType(), "FCL (NVOCC)");
+		ft.test("Product", job.product.get(), "Ocean Freight");
+		ft.test("Product Type", job.productType.get(), "FCL (NVOCC)");
 		ft.test("Place of Receipt", job.getPlaceOfReceipt(), "");
 		ft.test("Place of Delivery", job.getPlaceOfDelivery(), "");
 		ft.test("Origin Branch", job.getOriginBranch(), "");
 		ft.test("Destination Branch", job.getDestinationBranch(), "");
 		ft.test("Port of Loading", job.getPortOfLoading(), "");
 		ft.test("Port of Discharge", job.getPortOfDischarge(), "");
-		ft.test("Incoterms", job.getIncoterms(), "Select");
-		ft.test("Incoterms Location", job.getIncotermsLocation(), "");
+		
+		ft.test("Incoterms", job.incoterms.get(), "Select");
+		
+		ft.test("Incoterms Location", job.incotermsLocation.get(), "");
 		
 		// Main Tab
 		
@@ -56,7 +58,8 @@ public class TestJob {
 		
 		// Links
 		ft.test("Links Expanded State", job.isLinksExpanded(), true);
-		ft.test("Reference Type", job.referenceType.get(), "Select");
+		
+		ft.test("Reference Type default is Select", job.referenceType.get(), "Select");
 		ft.test("Reference Type Has 12 Options", job.referenceType.getOptions().length, 12);
 		ft.test("Reference Type Option 1 is Select", job.referenceType.getOptions()[0], "Select");
 		ft.test("Reference Type Option 2 is Origin Collection", job.referenceType.getOptions()[1], "Origin Collection");
@@ -70,6 +73,8 @@ public class TestJob {
 		ft.test("Reference Type Option 10 is Destination Collection", job.referenceType.getOptions()[9], "Destination Collection");
 		ft.test("Reference Type Option 11 is Destination Delivery", job.referenceType.getOptions()[10], "Destination Delivery");
 		ft.test("Reference Type Option 12 is Other", job.referenceType.getOptions()[11], "Other");
+		
+		ft.test("Reference Owner default is Select", job.referenceOwner.get(), "Select");
 		ft.test("Reference Owner Has 6 Options", job.referenceOwner.getOptions().length, 6);
 		ft.test("Reference Owner Option 1 is Select", job.referenceOwner.getOptions()[0], "Select");
 		ft.test("Reference Owner Option 2 is Shipper", job.referenceOwner.getOptions()[1], "Shipper");
@@ -77,6 +82,7 @@ public class TestJob {
 		ft.test("Reference Owner Option 4 is Notify Party", job.referenceOwner.getOptions()[3], "Notify Party");
 		ft.test("Reference Owner Option 5 is Third Party", job.referenceOwner.getOptions()[4], "Third Party");
 		ft.test("Reference Owner Option 6 is Other", job.referenceOwner.getOptions()[5], "Other");
+		
 		ft.test("Reference Value", job.referenceValue.get(), "");
 		
 		//ft.test("References", job.getNumReferences(), 0);
@@ -91,26 +97,27 @@ public class TestJob {
 		ft.test("Invoice Currency", job.getInvoiceCurrency(), "");
 		ft.test("Require Letter of Credit", job.getRequireLetterOfCredit(), false);
 		ft.test("Require Insurance", job.getRequireInsurance(), false);
-		ft.test("Origin Customs Clearance By", job.getOriginCustomsClearanceBy(), "Select");
-		ft.test("Origin Customs Clearance By Name", job.getOriginCustomsClearanceByName(), "");
-		ft.test("Destination Customs Clearance By", job.getDestinationCustomsClearanceBy(), "Select");
-		ft.test("Destination Customs Clearance By Name", job.getDestinationCustomsClearanceByName(), "");
+		ft.test("Origin Customs Clearance By default is Select", job.originCustomsClearanceBy.get(), "Select");
+		ft.test("Origin Customs Clearance By Name", job.originCustomsClearanceByName.get(), "");
+		ft.test("Destination Customs Clearance By is Select", job.destinationCustomsClearanceBy.get(), "Select");
+		ft.test("Destination Customs Clearance By Name", job.destinationCustomsClearanceByName.get(), "");
 		ft.test("Cargo Available Date", job.getCargoAvailableDate(), "");
+		
 		ft.test("MBL Type", job.mblType.get(), "Select");
 		ft.test("MBL Type Has 3 Options", job.mblType.getOptions().length, 3);
 		ft.test("MBL Type Option 1 is Select", job.mblType.getOptions()[0], "Select");
 		ft.test("MBL Type Option 2 is Express", job.mblType.getOptions()[1], "Express");
 		ft.test("MBL Type Option 3 is Original", job.mblType.getOptions()[2], "Original");
+		
 		ft.test("MBL Terms", job.mblTerms.get(), "Select");
 		ft.test("MBL Terms Has 3 Options", job.mblTerms.getOptions().length, 3);
 		ft.test("MBL Terms Option 1 is Select", job.mblTerms.getOptions()[0], "Select");
 		ft.test("MBL Terms Option 2 is Prepaid", job.mblTerms.getOptions()[1], "Prepaid");
 		ft.test("MBL Terms Option 3 is Collect", job.mblTerms.getOptions()[2], "Collect");
 		
-		
 		ft.test("Volumetric Ratio", job.getVolumetricRatio(), "1000");
 		ft.test("Number of Euro Pallets", job.getNumberOfEuroPallets(), "");
-		ft.test("Euro Pallet References", job.getEuroPalletReferences(), "");
+		ft.test("Euro Pallet References", job.euroPalletReferences.get(), "");
 		
 		
 		//TODO Tear down user/branch/schedule/job

@@ -1,10 +1,8 @@
 package focisTester;
 
-public class UIDropdown extends UIField {
+public class UIDropdown extends UITextField {
 
-	public UIDropdown(String inputXpath) {
-		super(inputXpath);
-	}
+	public UIDropdown(String inputXpath) { super(inputXpath); }
 	
 	public String get() {	return uiDriver.getValue(inputXpath); }
 	public void set(String text) { uiDriver.setDropdown(inputXpath, text); }

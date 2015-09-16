@@ -18,18 +18,12 @@ public class UIJob extends UIModel {
 	private static final String PRECONFIRM_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm']";
 	
 	private static final String JOB_HEADER_COLLAPSER_XPATH = "//*[@id='divHeaderExpandOrColl']/span/i";
-	private static final String PRODUCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
-	private static final String PRODUCT_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
 	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
-	//private static final String PLACE_OF_RECEIPT_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt']";
 	private static final String PLACE_OF_DELIVERY_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']";
-	//private static final String PLACE_OF_DELIVERY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery']";
 	private static final String ORIGIN_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
 	private static final String DESTINATION_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
 	private static final String PORT_OF_LOADING_XPATH ="//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPOLCode']";
 	private static final String PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPODCode']";
-	private static final String INCOTERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']";
-	private static final String INCOTERMS_LOCATION_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']";
 	
 	private static final String PARTIES_COLLAPSER_XPATH = "//*[@id='divPartyExpandOrColl']/span/i";
 	private static final String ADD_PARTIES_XPATH = "//*[@id='btnAddParties']";
@@ -42,7 +36,6 @@ public class UIJob extends UIModel {
 	private static final String THIRD_PARTY_MOVEMENT_XPATH = "//*[@id='4_PartyRow']/descendant::select[1]";
 	
 	private static final String LINKS_COLLAPSER_XPATH = "//*[@id='divLinksExpandOrColl']/span/i";
-	//private static final String REFERENCES_XPATH = "//*[@id='gbox_AgilityReferencesGrid']";
 
 	private static final String CUSTOMER_REQUIREMENTS_COLLAPSER_XPATH = "//*[@id='divCustReqExpandOrColl']/span/i";
 	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
@@ -53,18 +46,10 @@ public class UIJob extends UIModel {
 	private static final String INVOICE_CURRENCY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceCurrencyCode']";
 	private static final String REQUIRE_LETTER_OF_CREDIT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkLC']";
 	private static final String REQUIRE_INSURANCE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_chkLC']";
-	private static final String ORIGIN_CUSTOMS_CLEARANCE_BY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpOriginClearanceBy']";
-	private static final String ORIGIN_CUSTOMS_CLEARANCE_BY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtOriginLocation']";
-	private static final String DESTINATION_CUSTOMS_CLEARANCE_BY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpDestClearanceBy']";
-	private static final String DESTINATION_CUSTOMS_CLEARANCE_BY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtDestLocation']";
 	private static final String CARGO_AVAILABLE_DATE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtCargoAvailableDate']";
-	private static final String MBL_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType']";
-	private static final String MBL_TERMS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms']";
 	private static final String VOLUMETRIC_RATIO_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtVolumetricRatio']";
 	private static final String NUMBER_OF_EURO_PALLETS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtNoOfEuroPallets']";
-	private static final String EURO_PALLET_REFERENCES_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtEuroPalletReference']";
 	
-	private static final String MEASUREMENT_SYSTEM_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_drpMeasurementSystem']";
 	private static final String PACKAGES_CARGO_TAB_XPATH = "//*[@href='#PackageDetailsTab']";
 	private static final String UNITS_CARGO_TAB_XPATH = "//*[@href='#UnitDetailsTab']";
 	private static final String TREE_VIEW_CARGO_TAB_XPATH = "//*[@href='#TreeViewTab']";
@@ -85,28 +70,38 @@ public class UIJob extends UIModel {
 	private static final String PLAN_ROUTE_FIRST_SCHEDULE_XPATH = "//*[@id='rdbSupplierGridMain_1']";
 	private static final String PLAN_ROUTE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnApplyMainCarr']";
 	private static final String PLAN_ROUTE_SAVE_MAIN_CARRIAGE_XPATH = "//*[@id='btnSaveVesselMainCarriage']";
-	private static final String CREATE_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnCreateMainCarr']";
-	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSOriginCode']";
-	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSDestinationCode']";
-	private static final String CREATE_MAIN_CARRIAGE_CARRIER_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSCarrier']";
-	private static final String CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrDocCutOff']";
-	private static final String CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
-	private static final String CREATE_MAIN_CARRIAGE_ETD_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
-	private static final String CREATE_MAIN_CARRIAGE_ETA_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSEstmtdArrvl']";
-	private static final String CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnToSaveManualSchdleRoute']";
+//	private static final String CREATE_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnCreateMainCarr']";
+//	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSOriginCode']";
+//	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSDestinationCode']";
+//	private static final String CREATE_MAIN_CARRIAGE_CARRIER_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSCarrier']";
+//	private static final String CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrDocCutOff']";
+//	private static final String CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
+//	private static final String CREATE_MAIN_CARRIAGE_ETD_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
+//	private static final String CREATE_MAIN_CARRIAGE_ETA_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSEstmtdArrvl']";
+//	private static final String CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnToSaveManualSchdleRoute']";
 	
 	private static final String CARRIER_BOOKING_XPATH = "//a[text()='Carrier Booking']";
 	
+	public UIDropdown product = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']");
+	public UIDropdown productType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']");
+	public UIDropdown incoterms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']");
+	public UITextField incotermsLocation = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']");
+	
 	public UIDropdown referenceType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType']");
 	public UIDropdown referenceOwner = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpReferenceOwner']");
-	public UIField referenceValue = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue']");
+	public UITextField referenceValue = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue']");
+	public UIDropdown originCustomsClearanceBy = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpOriginClearanceBy']");
+	public UITextField originCustomsClearanceByName = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtOriginLocation']");
+	public UIDropdown destinationCustomsClearanceBy = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_drpDestClearanceBy']");
+	public UITextField destinationCustomsClearanceByName = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtDestLocation']");
 	public UIDropdown mblType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType']");
 	public UIDropdown mblTerms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms']");
+	public UITextField euroPalletReferences = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtEuroPalletReference']");
 	
+	public UIDropdown measurementSystem = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_drpMeasurementSystem']");
 	
 	// Cargo Tab
 	private String cargoTab;
-	private String measurementSystem;
 	private UIPackage[] packages;
 	private UIUnit[] units;
 	
@@ -182,26 +177,6 @@ public class UIJob extends UIModel {
 		return uiDriver.hasClass(JOB_HEADER_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
-	public String getProduct() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getValue(PRODUCT_XPATH);
-	}
-	
-	public void setProduct(String product) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.setDropdown(PRODUCT_XPATH, product);
-	}
-	
-	public String getProductType() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getValue(PRODUCT_TYPE_XPATH);
-	}
-	
-	public void setProductType(String productType) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.setDropdown(PRODUCT_TYPE_XPATH, productType);
-	}
-	
 	public String getPlaceOfReceipt() {
 		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(PLACE_OF_RECEIPT_CODE_XPATH);
@@ -259,26 +234,6 @@ public class UIJob extends UIModel {
 	
 	public void setPortOfDischage(String portOfDischarge) {
 		//TODO
-	}
-	
-	public String getIncoterms() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getValue(INCOTERMS_XPATH);
-	}
-	
-	public void setIncoterms(String incoterms) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.setDropdown(INCOTERMS_XPATH, incoterms);
-	}
-	
-	public String getIncotermsLocation() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getText(INCOTERMS_LOCATION_XPATH);
-	}
-	
-	public void setIncotermsLocation(String incotermsLocation) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.enterText(INCOTERMS_LOCATION_XPATH, incotermsLocation);
 	}
 	
 
@@ -446,12 +401,6 @@ public class UIJob extends UIModel {
 		}
 	}
 	
-//	public int getNumReferences() {
-//		openTab(MAIN_LABEL);
-//		setLinksExpanded(true);
-//		//return uiDriver.getNumTableRows(REFERENCES_XPATH) - 2;
-//	}
-	
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Customer Requirements
@@ -517,39 +466,9 @@ public class UIJob extends UIModel {
 		return uiDriver.getCheckboxValue(REQUIRE_INSURANCE_XPATH);
 	}
 	
-	public String getOriginCustomsClearanceBy() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(ORIGIN_CUSTOMS_CLEARANCE_BY_XPATH);
-	}
-	
-	public String getOriginCustomsClearanceByName() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getText(ORIGIN_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
-	}
-	
-	public String getDestinationCustomsClearanceBy() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(DESTINATION_CUSTOMS_CLEARANCE_BY_XPATH);
-	}
-	
-	public String getDestinationCustomsClearanceByName() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getText(DESTINATION_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
-	}
-	
 	public String getCargoAvailableDate() {
 		setTab(MAIN_LABEL);
 		return uiDriver.getText(CARGO_AVAILABLE_DATE_XPATH);
-	}
-	
-	public String getMBLType() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(MBL_TYPE_XPATH);
-	}
-	
-	public String getMBLTerms() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(MBL_TERMS_XPATH);
 	}
 	
 	public String getVolumetricRatio() {
@@ -562,24 +481,19 @@ public class UIJob extends UIModel {
 		return uiDriver.getText(NUMBER_OF_EURO_PALLETS_XPATH);
 	}
 	
-	public String getEuroPalletReferences() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getText(EURO_PALLET_REFERENCES_XPATH);
-	}
-	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Cargo Tab
 	/////////////////////////////////////////////////////////////////////////////////
 	
-	public String getMeasurementSystem() {
-		return measurementSystem;
-	}
-	
-	public void setMeasurementSystem(String measurementSystem) {
-		this.setTab(CARGO_LABEL);
-		uiDriver.setDropdown(MEASUREMENT_SYSTEM_XPATH, measurementSystem);
-		this.measurementSystem = measurementSystem;
-	}
+//	public String getMeasurementSystem() {
+//		return measurementSystem;
+//	}
+//	
+//	public void setMeasurementSystem(String measurementSystem) {
+//		this.setTab(CARGO_LABEL);
+//		uiDriver.setDropdown(MEASUREMENT_SYSTEM_XPATH, measurementSystem);
+//		this.measurementSystem = measurementSystem;
+//	}
 	
 	public UIPackage[] getPackages() {
 		return packages;
@@ -650,7 +564,7 @@ public class UIJob extends UIModel {
 		uiDriver.click(unitXpath + "/descendant::div[@title='Edit Unit']");
 		uiDriver.enterText(unitXpath + "/descendant::input[@name='UnitNumber']", unitNumber);
 		
-		switch (getMeasurementSystem()) {
+		switch (measurementSystem.get()) {
 			case "Metric":
 				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMGrossWeight']", String.valueOf(grossWeight));
 				uiDriver.enterText(unitXpath + "/descendant::input[@name='MainMNetWeight']", String.valueOf(netWeight));

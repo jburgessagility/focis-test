@@ -16,14 +16,14 @@ public class UICarrierBooking {
 	
 	
 	//public UIStakeholder carrierBookingOffice = new UIStakeholder("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtCarrierName']");
-	public UIField carrierBookingOffice = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtCarrierName']");
+	public UITextField carrierBookingOffice = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtCarrierName']");
 	public UIDropdown mblTerms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_drpMBLTerms']");
-	public UIField carrierContractNo = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtCarrierContractNo']");
-	public UIField spotRateNo = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtSpotRateNo']");
-	public UIField vessel = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVessel']");
-	public UIField voyageNo = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVoyageNo']");
-	public UIField feeder = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtFeeder']");
-	public UIField feederVoyageNo = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVoyageNo1']");
+	public UITextField carrierContractNo = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtCarrierContractNo']");
+	public UITextField spotRateNo = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtSpotRateNo']");
+	public UITextField vessel = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVessel']");
+	public UITextField voyageNo = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVoyageNo']");
+	public UITextField feeder = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtFeeder']");
+	public UITextField feederVoyageNo = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpCarierBookingFr_CarierBookingFr_txtVoyageNo1']");
 
 	
 	public UICarrierBooking(UIDriver uiDriver) { this.uiDriver = uiDriver; }

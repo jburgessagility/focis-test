@@ -1,7 +1,5 @@
 package focisTester;
 
-import focisTestSuite.WorkflowRunner;
-
 public class UIUser extends UIModel {
 	
 	private static final String USERNAME_XPATH = "//*[@id='Login1_UserName']";

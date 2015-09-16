@@ -1,14 +1,7 @@
 package focisTestSuite;
 
-import java.io.File;
-import java.lang.reflect.Type;
 import java.util.HashMap;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import focisTester.FOCiSTester;
-import focisTester.UIJob;
 
 public class WorkflowRunner {
 
@@ -35,9 +28,6 @@ public class WorkflowRunner {
 				
 		FOCiSTester ft = new FOCiSTester(params);
 		
-		UIJob job = FOCiSTester.job;
-		
-		
 		/////////////////////////////////////////////////////////////////////////////////
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
@@ -46,23 +36,6 @@ public class WorkflowRunner {
 		
 		TestCarrierBooking.run(ft);
 		ft.printResults();
-		
-//		job.blankJob();
-//		
-//		job.setShipper("AIA Engineering Limited");
-//		job.setShipperMovement("Door to CY (Point of Loading)");
-//		job.setConsignee("Presspart Manufacturing Ltd");
-//		job.setConsigneeMovement("CY (Point of Loading) to Door");
-//		job.setRequireFCR(true);
-//		
-//		ft.test("FCR Set", job.getRequireFCR(), true);
-//
-//		job.setMeasurementSystem("Imperial");
-//		job.addUnits(4, "20' DC");
-//		job.setUnit(1, "MSCU1234566", 12.5, 4.2, 1.2, "Shipper", "Hi Janaki!", false);
-//		job.setUnit(2, "MSCU2345672", 14.2, 3.1, 4.6, "Shipper", "Hi Praveen!", false);
-//		job.setUnit(3, "MSCU3456789", 22.5, 4.2, 2.2, "Shipper", "Hi Ashwath!", false);
-//		job.setUnit(4, "MSCU4567895", 122.52, 120.2, 4.2, "Shipper", "Hi Phani!", false);
 		
 	} // main
 } // WorkflowRunner
