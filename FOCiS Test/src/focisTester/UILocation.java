@@ -1,7 +1,8 @@
 package focisTester;
 
 public class UILocation extends UIField {
-	
+
+	// TODO Decide if this should be a UITextField, and how to deal with tabbing out
 	private UITextField code;
 	private UITextField name;
 	
