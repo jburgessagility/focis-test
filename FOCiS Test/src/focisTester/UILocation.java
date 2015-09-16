@@ -3,8 +3,8 @@ package focisTester;
 public class UILocation extends UIField {
 
 	// TODO Decide if this should be a UITextField, and how to deal with tabbing out
-	private UITextField code;
-	private UITextField name;
+	public UITextField code;
+	public UITextField name;
 	
 	private String codeXpath;
 	private String nameXpath;

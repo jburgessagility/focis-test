@@ -105,6 +105,7 @@ public class TestJob {
 		ft.test("MBL Type option 3 is Original", job.mblType.getOptions()[2], "Original");
 		
 		ft.test("MBL Terms", job.mblTerms.get(), "Select");
+		String[] mblTerms = { "Select", "Prepaid", "Collect" };
 		ft.test("MBL Terms has 3 options", job.mblTerms.getOptions().length, 3);
 		ft.test("MBL Terms option 1 is Select", job.mblTerms.getOptions()[0], "Select");
 		ft.test("MBL Terms option 2 is Prepaid", job.mblTerms.getOptions()[1], "Prepaid");

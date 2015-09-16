@@ -519,7 +519,7 @@ public class UIJob extends UIModel {
 	
 	public String getUnitXpath(int unitNum) {
 		return UNIT_DETAILS_GRID_XPATH + "/descendant::tr[" + (unitNum+1) + "]";
-	}
+	} // getUnitXpath
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////
@@ -549,10 +549,10 @@ public class UIJob extends UIModel {
 //		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETD_XPATH, "21-Jan-2016 09:24");
 //		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETA_XPATH, "22-Jan-2016 09:24");
 //		uiDriver.click(CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH);
-	}
+	} // setMainCarriage
 	
 	public void openCarrierBooking() {
 		setTab(SERVICES_LABEL);
 		uiDriver.clickAndOpenWindow(CARRIER_BOOKING_XPATH);
-	}
-}
+	} // openCarrierBooking
+} // UIJob
