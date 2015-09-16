@@ -30,7 +30,6 @@ public class UIPartiesStakeholder extends UIModel {
 	}
 	
 	public String getCode(String xpath) {
-		// TODO
 		return "";
 	}
 	

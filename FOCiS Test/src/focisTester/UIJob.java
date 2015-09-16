@@ -107,9 +107,7 @@ public class UIJob extends UIModel {
 	private UIPackage[] packages;
 	private UIUnit[] units;
 	
-	public UIJob(UIDriver uiDriver) {
-		this.uiDriver = uiDriver;
-	}
+	public UIJob(UIDriver uiDriver) {	this.uiDriver = uiDriver;	}
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////
@@ -125,26 +123,16 @@ public class UIJob extends UIModel {
 	}
 	
 	public void create() {
-		//TODO Check status and act accordingly
-		
 		uiDriver.click(CREATE_XPATH);
 	}
 	
 	public void preconfirm() {
-		//TODO Check status and act accordingly
-		
 		uiDriver.click(PRECONFIRM_XPATH);
 	}
-	
-	// TODO
-//	public String getTab() {
-//		return tab;
-//	}
 	
 	public void setTab(String tab) {
 		this.openJob();
 
-		// if (this.getTab() == tab) { return; }
 		String xpathToClick = "";
 		
 		switch (tab) {
@@ -168,7 +156,7 @@ public class UIJob extends UIModel {
 		} // switch
 		
 		uiDriver.clickAndWaitForClass(xpathToClick, "active");
-	}
+	} // setTab
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////
@@ -208,7 +196,6 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setOriginBranch(String originBranch) {
-		//TODO
 	}
 	
 	public String getDestinationBranch() {
@@ -218,7 +205,6 @@ public class UIJob extends UIModel {
 	
 	public void setDestinationBranch(String destinationBranch) {
 		this.setTab(MAIN_LABEL);
-		//TODO
 	}
 
 	public String getPortOfLoading() {
@@ -227,7 +213,6 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setPortOfLoading(String portOfLoading) {
-		//TODO
 	}
 	
 	public String getPortOfDischarge() {
@@ -236,7 +221,6 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setPortOfDischage(String portOfDischarge) {
-		//TODO
 	}
 	
 
@@ -329,7 +313,6 @@ public class UIJob extends UIModel {
 	
 	public void setShipperBillToParty() {
 		setTab(MAIN_LABEL);
-		//TODO
 	}
 	
 	public String getShipperBillingParty() {
