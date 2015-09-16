@@ -2,9 +2,12 @@ package focisTester;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -57,7 +60,7 @@ public class UIDriver {
 	public void login() {
 		
 		timer.setMode("Load Login Page");
-		driver.get("http://10.138.77.88:222/");
+		driver.get(args.get("url"));
 		
 		timer.setMode("Populate Login Page");
 		
@@ -74,8 +77,9 @@ public class UIDriver {
 		
 		timer.setMode("Load Template Search");
 		click("//a[@id='PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem']/span");
+		click("//a[@id='PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem']/span");
 		//driver.findElement(By.xpath("//a[@id='PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_lbParentItem']/span")).click();
-	  driver.findElement(By.xpath("//a[@id='PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem']/span")).click();
+	  //driver.findElement(By.xpath("//a[@id='PWCMasterPage_ctrlWUCSiteMenu_rptMenuContent_ctl03_rptSubMenu_ctl03_lbParentItem']/span")).click();
 	  wait.until(ExpectedConditions.elementToBeClickable(By.id("PWCMasterPage_PWCWebPartManager_gwpQuickBookingUC1_QuickBookingUC1_drpProduct")));
 	  
 	} // openTemplateSearch
@@ -99,16 +103,56 @@ public class UIDriver {
 	// Safe navigation methods
 	/////////////////////////////////////////////////////////////////////////////////
 	
-	public String navigateTo(String url) {
+	public void navigateTo(String url) {
 		while (true) {
 			try {
 				driver.get(url);
+				break;
 			}
 			catch (Exception e) {
 				//System.out.println(e);
 			}
 		}
 	}
+	
+	public void selectFrame(String xpath) {
+		while (true) {
+			try {
+				driver.switchTo().frame(driver.findElement(By.xpath(xpath)));
+				break;
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+	public void selectRootFrame() {
+		while (true) {
+			try {
+				driver.switchTo().parentFrame();
+				break;
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	
+//	public void selectNewWindow() {
+//		while (true) {
+//			try {
+//				for(String winHandle : driver.getWindowHandles()) {
+//					System.out.println(winHandle);
+//			    driver.switchTo().window(winHandle);
+//				}
+//				break;
+//			}
+//			catch (Exception e) {
+//				System.out.println(e);
+//			}
+//		}
+//	}
 	
 	public String getText(String xpath) {
 		while (true) {
@@ -168,6 +212,19 @@ public class UIDriver {
 		finishLoading();
 	}
 	
+	public void pressTab(String xpath) {
+		while (true) {
+			try {
+				driver.findElement(By.xpath(xpath)).sendKeys(Keys.TAB);
+				break;
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			}
+		}
+		finishLoading();
+	}
+	
 	public void clearText(String xpath) {
 		while (true) {
 			try {
@@ -188,7 +245,7 @@ public class UIDriver {
 				break;
 			}
 			catch (Exception e) {
-				//System.out.println(e);
+				System.out.println(e);
 			}
 		}
 		finishLoading(); 
@@ -220,6 +277,17 @@ public class UIDriver {
 		finishLoading(); 
 	} // setCheckbox
 	
+	public boolean isEditable(String xpath) {
+		while (true) {
+			try {
+    			return driver.findElement(By.xpath(xpath)).isEnabled();
+			}
+			catch (Exception e) {
+				//System.out.println(e);
+			} // catch
+		} // while
+	}
+	
 	public void setDropdown(String xpath, String selection) {
 		while (true) {
 			try {
@@ -233,6 +301,38 @@ public class UIDriver {
 
 		finishLoading(); 
 	} // setDropdown
+	
+	public String[] getDropdownOptions(String xpath) {
+		while (true) {
+			try {
+				List<WebElement> list = new Select(driver.findElement(By.xpath(xpath))).getOptions();
+				String[] options = new String[list.size()];
+				for (int i = 0; i < list.size(); i++) {
+					options[i] = list.get(i).getText();
+				}
+				return options;
+			} catch (Exception e) {
+			}
+		}
+	}
+	
+	public void clickAndOpenWindow(String xpath) {
+		while (true) {
+			try {
+				while(driver.getWindowHandles().size() == 1) {
+					driver.findElement(By.xpath(xpath)).click();
+				}
+				for(String winHandle : driver.getWindowHandles()) {
+					//System.out.println(winHandle);
+			    driver.switchTo().window(winHandle);
+				}
+				break;
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
 
 	public void clickAndWaitForElement(String xpathToClick, String xpathToWait) {
 		//System.out.println("xpathToClick: "+xpathToClick+", xpathToWait: "+xpathToWait);

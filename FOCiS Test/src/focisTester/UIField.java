@@ -2,31 +2,22 @@ package focisTester;
 
 public class UIField {
 	
-	private String xpath;
-	private String[] tabPaths;
-	private UIField parent;
+	protected UIDriver uiDriver;
+	protected String groupXpath;
+	protected String inputXpath;
+	protected String labelXpath;
 	
-	private String enableEditButtonXpath;
-	private String cancelEditButtonXpath;
-	private String saveEditButtonXpath;
+	public UIField(String inputXpath) {
+		uiDriver = FOCiSTester.uiDriver2;
+		this.inputXpath = inputXpath;
+		groupXpath = inputXpath + "/ancestor::*[contains(@class,'control-group')]";
+		labelXpath = groupXpath + "/descendant::span";
+	}
 	
-	// goto function that works recursively through click path to make the field visible
-	public void navigateTo() {
-		if (parent != null) {
-			parent.navigateTo();
-		} // if
-	} // navigateTo
-	
-	public void enableEdit() {
-		
-	} // enableEdit
-	
-	public void cancelEdit() {
-		
-	} // cancelEdit
-	
-	public void saveEdit() {
-		
-	} // saveEdit
+	public void set(String text) { uiDriver.enterText(inputXpath, text); }
+	public String get() {	return uiDriver.getText(inputXpath); }
+	public String getLabel() { return uiDriver.getText(labelXpath);	}
+	public boolean isEditable() {	return uiDriver.isEditable(inputXpath); }
+	public boolean isReadOnly() {	return !uiDriver.isEditable(inputXpath); }
 	
 } // UIField

@@ -28,6 +28,8 @@ public class WorkflowRunner {
 //		params = gson.fromJson(json, params.getClass());
 
 		params.put("url", "http://10.138.77.88:222/");
+//		params.put("url", "http://focissit.agility.com/");
+//		params.put("url", "http://focisagile.agility.com/");
 		params.put("browser", "internetExplorer");
 		params.put("iePath", "C:\\Users\\JBurgess\\Desktop\\IEDriverServer\\IEDriverServer.exe");
 				
@@ -40,8 +42,10 @@ public class WorkflowRunner {
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
 		
-		TestMain.run(ft);
+//		TestJob.run(ft);
 		
+		TestCarrierBooking.run(ft);
+		ft.printResults();
 		
 //		job.blankJob();
 //		

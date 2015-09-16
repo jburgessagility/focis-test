@@ -14,13 +14,16 @@ public class UIJob extends UIModel {
 	private static final String SERVICES_TAB_XPATH = "//*[@id='LiServices']";
 	private static final String EVENTS_TAB_XPATH = "//*[@id='LiEvents']";
 	
+	private static final String CREATE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnCreate']";
+	private static final String PRECONFIRM_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm']";
+	
 	private static final String JOB_HEADER_COLLAPSER_XPATH = "//*[@id='divHeaderExpandOrColl']/span/i";
 	private static final String PRODUCT_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']";
 	private static final String PRODUCT_TYPE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']";
 	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
-	private static final String PLACE_OF_RECEIPT_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt']";
+	//private static final String PLACE_OF_RECEIPT_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfReceipt']";
 	private static final String PLACE_OF_DELIVERY_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']";
-	private static final String PLACE_OF_DELIVERY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery']";
+	//private static final String PLACE_OF_DELIVERY_NAME_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPlaceOfDelivery']";
 	private static final String ORIGIN_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
 	private static final String DESTINATION_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
 	private static final String PORT_OF_LOADING_XPATH ="//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPOLCode']";
@@ -39,6 +42,7 @@ public class UIJob extends UIModel {
 	private static final String THIRD_PARTY_MOVEMENT_XPATH = "//*[@id='4_PartyRow']/descendant::select[1]";
 	
 	private static final String LINKS_COLLAPSER_XPATH = "//*[@id='divLinksExpandOrColl']/span/i";
+	//private static final String REFERENCES_XPATH = "//*[@id='gbox_AgilityReferencesGrid']";
 
 	private static final String CUSTOMER_REQUIREMENTS_COLLAPSER_XPATH = "//*[@id='divCustReqExpandOrColl']/span/i";
 	private static final String REQUIRE_SQSTBL_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_ChkDocumentType1']";
@@ -76,7 +80,30 @@ public class UIJob extends UIModel {
 	
 	
 	private static final String PLAN_ROUTE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnAddRoute']";
-
+	private static final String PLAN_ROUTE_IFRAME_XPATH = "//*[contains(@id,'fancybox-frame')]";
+	private static final String PLAN_ROUTE_CLOSE_XPATH = "//*[contains(@class,'fancybox-close')]";
+	private static final String PLAN_ROUTE_FIRST_SCHEDULE_XPATH = "//*[@id='rdbSupplierGridMain_1']";
+	private static final String PLAN_ROUTE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnApplyMainCarr']";
+	private static final String PLAN_ROUTE_SAVE_MAIN_CARRIAGE_XPATH = "//*[@id='btnSaveVesselMainCarriage']";
+	private static final String CREATE_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnCreateMainCarr']";
+	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSOriginCode']";
+	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSDestinationCode']";
+	private static final String CREATE_MAIN_CARRIAGE_CARRIER_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSCarrier']";
+	private static final String CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrDocCutOff']";
+	private static final String CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
+	private static final String CREATE_MAIN_CARRIAGE_ETD_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
+	private static final String CREATE_MAIN_CARRIAGE_ETA_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSEstmtdArrvl']";
+	private static final String CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnToSaveManualSchdleRoute']";
+	
+	private static final String CARRIER_BOOKING_XPATH = "//a[text()='Carrier Booking']";
+	
+	public UIDropdown referenceType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType']");
+	public UIDropdown referenceOwner = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpReferenceOwner']");
+	public UIField referenceValue = new UIField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAgilityRefValue']");
+	public UIDropdown mblType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType']");
+	public UIDropdown mblTerms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms']");
+	
+	
 	// Cargo Tab
 	private String cargoTab;
 	private String measurementSystem;
@@ -99,12 +126,24 @@ public class UIJob extends UIModel {
 		uiDriver.startBlankJob("Ocean Freight", "FCL (NVOCC)");
 	}
 	
+	public void create() {
+		//TODO Check status and act accordingly
+		
+		uiDriver.click(CREATE_XPATH);
+	}
+	
+	public void preconfirm() {
+		//TODO Check status and act accordingly
+		
+		uiDriver.click(PRECONFIRM_XPATH);
+	}
+	
 	// TODO
 //	public String getTab() {
 //		return tab;
 //	}
 	
-	public void openTab(String tab) {
+	public void setTab(String tab) {
 		this.openJob();
 
 		// if (this.getTab() == tab) { return; }
@@ -139,52 +178,54 @@ public class UIJob extends UIModel {
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	public boolean isJobHeaderExpanded() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(JOB_HEADER_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
 	public String getProduct() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getValue(PRODUCT_XPATH);
 	}
 	
 	public void setProduct(String product) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		uiDriver.setDropdown(PRODUCT_XPATH, product);
 	}
 	
 	public String getProductType() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getValue(PRODUCT_TYPE_XPATH);
 	}
 	
 	public void setProductType(String productType) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		uiDriver.setDropdown(PRODUCT_TYPE_XPATH, productType);
 	}
 	
 	public String getPlaceOfReceipt() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(PLACE_OF_RECEIPT_CODE_XPATH);
 	}
 	
 	public void setPlaceOfReceipt(String placeOfReceipt) {
-		this.openTab(MAIN_LABEL);
-		//TODO
+		this.setTab(MAIN_LABEL);
+		uiDriver.enterText(PLACE_OF_RECEIPT_CODE_XPATH, placeOfReceipt);
+		uiDriver.pressTab(PLACE_OF_RECEIPT_CODE_XPATH);
 	}
 	
 	public String getPlaceOfDelivery() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(PLACE_OF_DELIVERY_CODE_XPATH);
 	}
 	
 	public void setPlaceOfDelivery(String placeOfDelivery) {
-		this.openTab(MAIN_LABEL);
-		//TODO
+		this.setTab(MAIN_LABEL);
+		uiDriver.enterText(PLACE_OF_DELIVERY_CODE_XPATH, placeOfDelivery);
+		uiDriver.pressTab(PLACE_OF_DELIVERY_CODE_XPATH);
 	}
 	
 	public String getOriginBranch() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(ORIGIN_BRANCH_XPATH);
 	}
 	
@@ -193,17 +234,17 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getDestinationBranch() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(DESTINATION_BRANCH_XPATH);
 	}
 	
 	public void setDestinationBranch(String destinationBranch) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		//TODO
 	}
 
 	public String getPortOfLoading() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(PORT_OF_LOADING_XPATH);
 	}
 	
@@ -212,7 +253,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getPortOfDischarge() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(PORT_OF_DISCHARGE_XPATH);
 	}
 	
@@ -221,22 +262,22 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getIncoterms() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getValue(INCOTERMS_XPATH);
 	}
 	
 	public void setIncoterms(String incoterms) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		uiDriver.setDropdown(INCOTERMS_XPATH, incoterms);
 	}
 	
 	public String getIncotermsLocation() {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		return uiDriver.getText(INCOTERMS_LOCATION_XPATH);
 	}
 	
 	public void setIncotermsLocation(String incotermsLocation) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		uiDriver.enterText(INCOTERMS_LOCATION_XPATH, incotermsLocation);
 	}
 	
@@ -245,18 +286,23 @@ public class UIJob extends UIModel {
 	// Main Tab
 	/////////////////////////////////////////////////////////////////////////////////
 	
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	// Parties
+	/////////////////////////////////////////////////////////////////////////////////
+	
 	public boolean isPartiesExpanded() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(PARTIES_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
 	public boolean isAdditionalPartiesExpanded() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(ADD_PARTIES_XPATH, "icon-collapse-alt");
 	}
 	
 	public void setAdditionalPartiesExpanded(boolean isExpanded) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		if (isAdditionalPartiesExpanded() == isExpanded) { return; }
 		if (isExpanded) {
 			uiDriver.clickAndWaitForClass(ADD_PARTIES_XPATH, "icon-collapse-alt");
@@ -267,230 +313,257 @@ public class UIJob extends UIModel {
 	}
 	
 	public String getShipper() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(SHIPPER_XPATH);
 	}
 	
 	public void setShipper(String shipperName) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		FOCiSTester.stakeholder.set(SHIPPER_XPATH, shipperName);
 	}
 	
 	public String getConsignee() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(CONSIGNEE_XPATH);
 	}
 	
 	public void setConsignee(String consigneeName) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		FOCiSTester.stakeholder.set(CONSIGNEE_XPATH, consigneeName);
 	}
 	
 	public String getNotifyParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(NOTIFY_PARTY_XPATH);
 	}
 	
 	public void setNotifyParty(String notifyPartyName) {
-		this.openTab(MAIN_LABEL);
+		this.setTab(MAIN_LABEL);
 		setAdditionalPartiesExpanded(true);
 		FOCiSTester.stakeholder.set(NOTIFY_PARTY_XPATH, notifyPartyName);
 	}
 	
 	public String getThirdParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getName(THIRD_PARTY_XPATH);
 	}
 	
 	public void setThirdParty(String thirdPartyName) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		setAdditionalPartiesExpanded(true);
 		FOCiSTester.stakeholder.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
 	public String getShipperMovement() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(SHIPPER_MOVEMENT_XPATH);
 	} // getShipperMovement
 	
 	public void setShipperMovement(String shipperMovement) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		uiDriver.setDropdown(SHIPPER_MOVEMENT_XPATH, shipperMovement);
 	} // setShipperMovement
 	
 	public String getShipperBillToParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillToParty(SHIPPER_XPATH);
 	}
 	
 	public void setShipperBillToParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		//TODO
 	}
 	
 	public String getShipperBillingParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillingParty(SHIPPER_XPATH);
 	}
 	
 	public String getConsigneeMovement() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(CONSIGNEE_MOVEMENT_XPATH);
 	} // getConsigneeMovement
 
 	public void setConsigneeMovement(String consigneeMovement) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, consigneeMovement);
 	} // setConsigneemovement
 
 	public String getConsigneeBillToParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillToParty(CONSIGNEE_XPATH);
 	}
 	
 	public void setConsigneeBillToParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 	}
 	
 	public String getConsigneeBillingParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillingParty(CONSIGNEE_XPATH);
 	}
 	
 	public String getThirdPartyMovement() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		setAdditionalPartiesExpanded(true);
 		return uiDriver.getValue(THIRD_PARTY_MOVEMENT_XPATH);
 	} // getThirdPartyMovement
 
 	public void setThirdPartyMovement(String thirdPartyMovement) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		setAdditionalPartiesExpanded(true);
 		uiDriver.setDropdown(THIRD_PARTY_MOVEMENT_XPATH, thirdPartyMovement);
 	} // setThirdPartyMovement
 	
 	public String getThirdPartyBillToParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillToParty(THIRD_PARTY_XPATH);
 	}
 	
 	public String getThirdPartyBillingParty() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillingParty(THIRD_PARTY_XPATH);
 	}
 	
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	// Links
+	/////////////////////////////////////////////////////////////////////////////////
+	
 	public boolean isLinksExpanded() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(LINKS_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
+	public void setLinksExpanded(boolean isExpanded) {
+		setTab(MAIN_LABEL);
+		if (isLinksExpanded() == isExpanded) { return; }
+		if (isExpanded) {
+			uiDriver.clickAndWaitForClass(LINKS_COLLAPSER_XPATH, "icon-chevron-up");
+		}
+		else {
+			uiDriver.clickAndWaitForClass(LINKS_COLLAPSER_XPATH, "icon-chevron-down");
+		}
+	}
+	
+//	public int getNumReferences() {
+//		openTab(MAIN_LABEL);
+//		setLinksExpanded(true);
+//		//return uiDriver.getNumTableRows(REFERENCES_XPATH) - 2;
+//	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	// Customer Requirements
+	/////////////////////////////////////////////////////////////////////////////////
+	
 	public boolean isCustomerRequirementsExpanded() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(CUSTOMER_REQUIREMENTS_COLLAPSER_XPATH, "icon-chevron-up");
 	}
 	
 	public boolean getRequireSQSTBL() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_SQSTBL_XPATH);
 	} // getRequireSQSTBL
 	
 	public void setRequireSQSTBL(boolean requireSQSTBL) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_SQSTBL_XPATH, requireSQSTBL);
 	} // setRequireSQSTBL
 	
 	public boolean getRequireFCR() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_FCR_XPATH);
 	} // getRequireFCR
 	
 	public void setRequireFCR(boolean requireFCR) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCR_XPATH, requireFCR);
 	} // setRequireFCR
 	
 	public boolean getRequireFCT() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_FCT_XPATH);
 	} // getRequireFCT
 	
 	public void setRequireFCT(boolean requireFCT) {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		uiDriver.setCheckbox(REQUIRE_FCT_XPATH, requireFCT);
 	} // setRequireFCT
 	
 	public String getRequiredSeaquestType() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(REQUIRED_SEAQUEST_TYPE_XPATH);
 	} // getRequiredSeaquestType
 	
 	public String getInvoiceValue() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(INVOICE_VALUE_XPATH);
 	}
 	
 	public String getInvoiceCurrency() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(INVOICE_CURRENCY_XPATH);
 	}
 	
 	public boolean getRequireLetterOfCredit() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_LETTER_OF_CREDIT_XPATH);
 	}
 	
 	public boolean getRequireInsurance() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getCheckboxValue(REQUIRE_INSURANCE_XPATH);
 	}
 	
 	public String getOriginCustomsClearanceBy() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(ORIGIN_CUSTOMS_CLEARANCE_BY_XPATH);
 	}
 	
 	public String getOriginCustomsClearanceByName() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(ORIGIN_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
 	}
 	
 	public String getDestinationCustomsClearanceBy() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(DESTINATION_CUSTOMS_CLEARANCE_BY_XPATH);
 	}
 	
 	public String getDestinationCustomsClearanceByName() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(DESTINATION_CUSTOMS_CLEARANCE_BY_NAME_XPATH);
 	}
 	
 	public String getCargoAvailableDate() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(CARGO_AVAILABLE_DATE_XPATH);
 	}
 	
 	public String getMBLType() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(MBL_TYPE_XPATH);
 	}
 	
 	public String getMBLTerms() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getValue(MBL_TERMS_XPATH);
 	}
 	
 	public String getVolumetricRatio() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getNumericText(VOLUMETRIC_RATIO_XPATH);
 	}
 	
 	public String getNumberOfEuroPallets() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(NUMBER_OF_EURO_PALLETS_XPATH);
 	}
 	
 	public String getEuroPalletReferences() {
-		openTab(MAIN_LABEL);
+		setTab(MAIN_LABEL);
 		return uiDriver.getText(EURO_PALLET_REFERENCES_XPATH);
 	}
 	
@@ -503,7 +576,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setMeasurementSystem(String measurementSystem) {
-		this.openTab(CARGO_LABEL);
+		this.setTab(CARGO_LABEL);
 		uiDriver.setDropdown(MEASUREMENT_SYSTEM_XPATH, measurementSystem);
 		this.measurementSystem = measurementSystem;
 	}
@@ -513,7 +586,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setPackages(UIPackage[] packages) {
-		this.openTab(CARGO_LABEL);
+		this.setTab(CARGO_LABEL);
 		this.packages = packages;
 	}
 	
@@ -522,7 +595,7 @@ public class UIJob extends UIModel {
 	}
 	
 	public void setUnits(UIUnit[] units) {
-		this.openTab(CARGO_LABEL);
+		this.setTab(CARGO_LABEL);
 		this.units = units;
 	}
 	
@@ -532,7 +605,7 @@ public class UIJob extends UIModel {
 	
 	public void openCargoTab(String cargoTab) {
 		this.openJob();
-		this.openTab("Cargo");
+		this.setTab("Cargo");
 		
 		if (this.getCargoTab() == cargoTab) { return; }
 		
@@ -601,5 +674,40 @@ public class UIJob extends UIModel {
 	
 	public String getUnitXpath(int unitNum) {
 		return UNIT_DETAILS_GRID_XPATH + "/descendant::tr[" + (unitNum+1) + "]";
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////
+	// Movement
+	/////////////////////////////////////////////////////////////////////////////////
+	
+	public void setMainCarriage() {
+		setTab(MOVEMENT_LABEL);
+		uiDriver.click(PLAN_ROUTE_XPATH);
+		uiDriver.selectFrame(PLAN_ROUTE_IFRAME_XPATH);
+		uiDriver.click(PLAN_ROUTE_FIRST_SCHEDULE_XPATH);
+		uiDriver.click(PLAN_ROUTE_APPLY_MAIN_CARRIAGE_XPATH);
+		uiDriver.click(PLAN_ROUTE_SAVE_MAIN_CARRIAGE_XPATH);
+		uiDriver.selectRootFrame();
+		uiDriver.click(PLAN_ROUTE_CLOSE_XPATH);
+		
+		
+//		uiDriver.click(CREATE_MAIN_CARRIAGE_XPATH);
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH, "INNSA");
+//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH);
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH, "GBFXT");
+//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH);
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_CARRIER_XPATH, "Maersk Line");
+//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_CARRIER_XPATH);
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH, "20-Jan-2016 09:24");
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH, "20-Jan-2016 09:24");
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETD_XPATH, "21-Jan-2016 09:24");
+//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETA_XPATH, "22-Jan-2016 09:24");
+//		uiDriver.click(CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH);
+	}
+	
+	public void openCarrierBooking() {
+		setTab(SERVICES_LABEL);
+		uiDriver.clickAndOpenWindow(CARRIER_BOOKING_XPATH);
 	}
 }
