@@ -8,9 +8,9 @@ import focisTester.UITextField;
 
 public class TestMacros {
 
-	public void testTextField(FOCiSTester ft, UITextField textField, String name, Boolean isVisible, Boolean isEditable) {
-		String testName = name+" label is correct";
-		ft.test(testName, textField.getLabel(), name);
+	public static void testTextField(FOCiSTester ft, UITextField textField, String name, String label, Boolean isVisible, Boolean isEditable) {
+		String testName = name+" label is "+label;
+		if (label != null) { ft.test(testName, textField.getLabel(), label); }
 		
 		if (isVisible) { testName = name+" is visible"; } else { testName = name+" is not visible";	}
 		ft.test(testName, textField.isVisible(), isVisible);
@@ -19,9 +19,9 @@ public class TestMacros {
 		ft.test(testName, textField.isEditable(), isEditable);
 	} // testTextField
 	
-	public void testNumericField(FOCiSTester ft, UINumericField numericField, String name, Boolean isVisible, Boolean isEditable) {
-		String testName = name+" label is correct";
-		ft.test(testName, numericField.getLabel(), name);
+	public static void testNumericField(FOCiSTester ft, UINumericField numericField, String name, String label, Boolean isVisible, Boolean isEditable) {
+		String testName = name+" label is "+label;
+		if (label != null) { ft.test(testName, numericField.getLabel(), label); }
 		
 		if (isVisible) { testName = name+" is visible"; } else { testName = name+" is not visible";	}
 		ft.test(testName, numericField.isVisible(), isVisible);
@@ -30,9 +30,9 @@ public class TestMacros {
 		ft.test(testName, numericField.isEditable(), isEditable);
 	} // testNumericField
 	
-	public void testDropdown(FOCiSTester ft, UIDropdown dropdown, String name, String[] options, Boolean isVisible, Boolean isEditable) {
-		String testName = name+" label is correct";
-		ft.test(testName, dropdown.getLabel(), name);
+	public static void testDropdown(FOCiSTester ft, UIDropdown dropdown, String name, String label, String[] options, Boolean isVisible, Boolean isEditable) {
+		String testName = name+" label is "+label;
+		if (label != null) { ft.test(testName, dropdown.getLabel(), label); }
 		
 		if (isVisible) { testName = name+" is visible"; } else { testName = name+" is not visible";	}
 		ft.test(testName, dropdown.isVisible(), isVisible);
@@ -49,9 +49,9 @@ public class TestMacros {
 		} // for
 	} //testDropdown
 	
-	public void testLocation(FOCiSTester ft, UILocation location, String name, Boolean codeIsVisible, Boolean codeIsEditable, Boolean nameIsVisible, Boolean nameIsEditable) {
-		String testName = name+" label is correct";
-		ft.test(testName, location.getLabel(), name);
+	public static void testLocation(FOCiSTester ft, UILocation location, String name, String label, Boolean codeIsVisible, Boolean codeIsEditable, Boolean nameIsVisible, Boolean nameIsEditable) {
+		String testName = name+" label is "+label;
+		if (label != null) { ft.test(testName, location.getLabel(), label); }
 		
 		if (codeIsVisible) { testName = name+" code is visible"; } else { testName = name+" code is not visible";	}
 		ft.test(testName, location.code.isVisible(), codeIsVisible);

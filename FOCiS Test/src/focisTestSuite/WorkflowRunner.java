@@ -32,9 +32,9 @@ public class WorkflowRunner {
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
 		
-//		TestJob.run(ft);
+		TestJob.run(ft);
 		
-		TestCarrierBooking.run(ft);
+		//TestCarrierBooking.run(ft);
 		ft.printResults();
 		
 	} // main

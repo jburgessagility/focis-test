@@ -19,7 +19,7 @@ public class TestCarrierBooking {
 		job.setPlaceOfReceipt("INBOM");
 		job.setPlaceOfDelivery("GBLON");
 		job.setShipper("AIA Engineering Limited");
-		job.setShipperMovement("Door to Door");
+		job.shipperMovementType.set("Door to Door");
 		job.mblTerms.set("Original");
 		job.addUnits(1, "20' DC");
 		job.preconfirm();

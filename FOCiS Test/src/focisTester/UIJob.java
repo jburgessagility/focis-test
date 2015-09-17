@@ -31,9 +31,6 @@ public class UIJob extends UIModel {
 	private static final String CONSIGNEE_XPATH = "//*[@id='2_PartyRow']";
 	private static final String NOTIFY_PARTY_XPATH = "//*[@id='3_PartyRow']";
 	private static final String THIRD_PARTY_XPATH = "//*[@id='4_PartyRow']";
-	private static final String SHIPPER_MOVEMENT_XPATH = "//*[@id='1_PartyRow']/descendant::select[1]";
-	private static final String CONSIGNEE_MOVEMENT_XPATH = "//*[@id='2_PartyRow']/descendant::select[1]";
-	private static final String THIRD_PARTY_MOVEMENT_XPATH = "//*[@id='4_PartyRow']/descendant::select[1]";
 	
 	private static final String LINKS_COLLAPSER_XPATH = "//*[@id='divLinksExpandOrColl']/span/i";
 
@@ -41,8 +38,6 @@ public class UIJob extends UIModel {
 	private static final String INVOICE_VALUE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceValue']";
 	private static final String INVOICE_CURRENCY_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtInvoiceCurrencyCode']";
 	private static final String CARGO_AVAILABLE_DATE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtCargoAvailableDate']";
-	private static final String VOLUMETRIC_RATIO_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtVolumetricRatio']";
-	private static final String NUMBER_OF_EURO_PALLETS_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtNoOfEuroPallets']";
 	
 	private static final String PACKAGES_CARGO_TAB_XPATH = "//*[@href='#PackageDetailsTab']";
 	private static final String UNITS_CARGO_TAB_XPATH = "//*[@href='#UnitDetailsTab']";
@@ -62,15 +57,6 @@ public class UIJob extends UIModel {
 	private static final String PLAN_ROUTE_FIRST_SCHEDULE_XPATH = "//*[@id='rdbSupplierGridMain_1']";
 	private static final String PLAN_ROUTE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnApplyMainCarr']";
 	private static final String PLAN_ROUTE_SAVE_MAIN_CARRIAGE_XPATH = "//*[@id='btnSaveVesselMainCarriage']";
-//	private static final String CREATE_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnCreateMainCarr']";
-//	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSOriginCode']";
-//	private static final String CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSDestinationCode']";
-//	private static final String CREATE_MAIN_CARRIAGE_CARRIER_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSCarrier']";
-//	private static final String CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrDocCutOff']";
-//	private static final String CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
-//	private static final String CREATE_MAIN_CARRIAGE_ETD_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtCarrCargoCutOff']";
-//	private static final String CREATE_MAIN_CARRIAGE_ETA_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_txtMSEstmtdArrvl']";
-//	private static final String CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpRouteSearchFr1_RouteSearchFr1_btnToSaveManualSchdleRoute']";
 	
 	private static final String CARRIER_BOOKING_XPATH = "//a[text()='Carrier Booking']";
 	
@@ -78,6 +64,10 @@ public class UIJob extends UIModel {
 	public UIDropdown productType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']");
 	public UIDropdown incoterms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']");
 	public UITextField incotermsLocation = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']");
+	
+	public UIDropdown shipperMovementType = new UIDropdown("//*[@id='1_PartyRow']/descendant::select[1]");
+	public UIDropdown consigneeMovementType = new UIDropdown("//*[@id='2_PartyRow']/descendant::select[1]");
+	public UIDropdown thirdPartyMovementType = new UIDropdown("//*[@id='4_PartyRow']/descendant::select[1]");
 	
 	public UIDropdown referenceType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpAgilityRefType']");
 	public UIDropdown referenceOwner = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpReferenceOwner']");
@@ -96,6 +86,8 @@ public class UIJob extends UIModel {
 	public UITextField destinationCustomsClearanceByName = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtDestLocation']");
 	public UIDropdown mblType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLType']");
 	public UIDropdown mblTerms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtMBLTerms']");
+	public UINumericField volumetricRatio = new UINumericField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtVolumetricRatio']");
+	public UINumericField numberOfEuroPallets = new UINumericField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtNoOfEuroPallets']");
 	public UITextField euroPalletReferences = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_BookingAddlDetailsFr1_txtEuroPalletReference']");
 	
 	public UIDropdown measurementSystem = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_ItemHierarchyMain1_drpMeasurementSystem']");
@@ -296,16 +288,6 @@ public class UIJob extends UIModel {
 		FOCiSTester.stakeholder.set(THIRD_PARTY_XPATH, thirdPartyName);
 	} // setThirdParty
 	
-	public String getShipperMovement() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(SHIPPER_MOVEMENT_XPATH);
-	} // getShipperMovement
-	
-	public void setShipperMovement(String shipperMovement) {
-		setTab(MAIN_LABEL);
-		uiDriver.setDropdown(SHIPPER_MOVEMENT_XPATH, shipperMovement);
-	} // setShipperMovement
-	
 	public String getShipperBillToParty() {
 		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillToParty(SHIPPER_XPATH);
@@ -319,16 +301,6 @@ public class UIJob extends UIModel {
 		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillingParty(SHIPPER_XPATH);
 	}
-	
-	public String getConsigneeMovement() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getValue(CONSIGNEE_MOVEMENT_XPATH);
-	} // getConsigneeMovement
-
-	public void setConsigneeMovement(String consigneeMovement) {
-		setTab(MAIN_LABEL);
-		uiDriver.setDropdown(CONSIGNEE_MOVEMENT_XPATH, consigneeMovement);
-	} // setConsigneemovement
 
 	public String getConsigneeBillToParty() {
 		setTab(MAIN_LABEL);
@@ -343,18 +315,6 @@ public class UIJob extends UIModel {
 		setTab(MAIN_LABEL);
 		return FOCiSTester.stakeholder.getBillingParty(CONSIGNEE_XPATH);
 	}
-	
-	public String getThirdPartyMovement() {
-		setTab(MAIN_LABEL);
-		setAdditionalPartiesExpanded(true);
-		return uiDriver.getValue(THIRD_PARTY_MOVEMENT_XPATH);
-	} // getThirdPartyMovement
-
-	public void setThirdPartyMovement(String thirdPartyMovement) {
-		setTab(MAIN_LABEL);
-		setAdditionalPartiesExpanded(true);
-		uiDriver.setDropdown(THIRD_PARTY_MOVEMENT_XPATH, thirdPartyMovement);
-	} // setThirdPartyMovement
 	
 	public String getThirdPartyBillToParty() {
 		setTab(MAIN_LABEL);
@@ -411,16 +371,7 @@ public class UIJob extends UIModel {
 		setTab(MAIN_LABEL);
 		return uiDriver.getText(CARGO_AVAILABLE_DATE_XPATH);
 	}
-	
-	public String getVolumetricRatio() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getNumericText(VOLUMETRIC_RATIO_XPATH);
-	}
-	
-	public String getNumberOfEuroPallets() {
-		setTab(MAIN_LABEL);
-		return uiDriver.getText(NUMBER_OF_EURO_PALLETS_XPATH);
-	}
+
 	
 	/////////////////////////////////////////////////////////////////////////////////
 	// Cargo Tab
@@ -536,19 +487,6 @@ public class UIJob extends UIModel {
 		uiDriver.selectRootFrame();
 		uiDriver.click(PLAN_ROUTE_CLOSE_XPATH);
 		
-		
-//		uiDriver.click(CREATE_MAIN_CARRIAGE_XPATH);
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH, "INNSA");
-//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_PORT_OF_LOADING_XPATH);
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH, "GBFXT");
-//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_PORT_OF_DISCHARGE_XPATH);
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_CARRIER_XPATH, "Maersk Line");
-//		uiDriver.pressTab(CREATE_MAIN_CARRIAGE_CARRIER_XPATH);
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_DOC_CUT_OFF_XPATH, "20-Jan-2016 09:24");
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_CARGO_CUT_OFF_XPATH, "20-Jan-2016 09:24");
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETD_XPATH, "21-Jan-2016 09:24");
-//		uiDriver.enterText(CREATE_MAIN_CARRIAGE_ETA_XPATH, "22-Jan-2016 09:24");
-//		uiDriver.click(CREATE_MAIN_CARRIAGE_APPLY_MAIN_CARRIAGE_XPATH);
 	} // setMainCarriage
 	
 	public void openCarrierBooking() {
