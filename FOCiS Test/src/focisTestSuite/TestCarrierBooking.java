@@ -16,8 +16,8 @@ public class TestCarrierBooking {
 		// Set up job
 		job.blankJob();
 		job.create();
-		job.setPlaceOfReceipt("INBOM");
-		job.setPlaceOfDelivery("GBLON");
+		job.placeOfReceipt.setByCode("INBOM");
+		job.placeOfDelivery.setByCode("GBLON");
 		job.setShipper("AIA Engineering Limited");
 		job.shipperMovementType.set("Door to Door");
 		job.mblTerms.set("Original");

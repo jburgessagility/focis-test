@@ -32,9 +32,12 @@ public class WorkflowRunner {
 		// Workflow
 		/////////////////////////////////////////////////////////////////////////////////
 		
-		TestJob.run(ft);
-		
+		FOCiSTester.user.login("jburgess", "q");
+		TestTemplateSearch.run(ft);		
+		//TestJob.run(ft);
 		//TestCarrierBooking.run(ft);
+
+		
 		ft.printResults();
 		
 	} // main

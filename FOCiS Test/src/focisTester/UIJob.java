@@ -18,8 +18,6 @@ public class UIJob extends UIModel {
 	private static final String PRECONFIRM_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_btnPreConfirm']";
 	
 	private static final String JOB_HEADER_COLLAPSER_XPATH = "//*[@id='divHeaderExpandOrColl']/span/i";
-	private static final String PLACE_OF_RECEIPT_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']";
-	private static final String PLACE_OF_DELIVERY_CODE_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']";
 	private static final String ORIGIN_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtOrgBranchCode']";
 	private static final String DESTINATION_BRANCH_XPATH = "//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtDestBranchCode']";
 	private static final String PORT_OF_LOADING_XPATH ="//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtPOLCode']";
@@ -62,6 +60,8 @@ public class UIJob extends UIModel {
 	
 	public UIDropdown product = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProduct']");
 	public UIDropdown productType = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpProductType']");
+	public UILocation placeOfReceipt = new UILocation("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfRecCode']");
+	public UILocation placeOfDelivery = new UILocation("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtAglPlcOfDelCode']");
 	public UIDropdown incoterms = new UIDropdown("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_drpTerms']");
 	public UITextField incotermsLocation = new UITextField("//*[@id='PWCMasterPage_PWCWebPartManager_gwpBookingDetailsFr1_BookingDetailsFr1_txtTermsLocation']");
 	
@@ -158,28 +158,6 @@ public class UIJob extends UIModel {
 	public boolean isJobHeaderExpanded() {
 		setTab(MAIN_LABEL);
 		return uiDriver.hasClass(JOB_HEADER_COLLAPSER_XPATH, "icon-chevron-up");
-	}
-	
-	public String getPlaceOfReceipt() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getText(PLACE_OF_RECEIPT_CODE_XPATH);
-	}
-	
-	public void setPlaceOfReceipt(String placeOfReceipt) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.enterText(PLACE_OF_RECEIPT_CODE_XPATH, placeOfReceipt);
-		uiDriver.pressTab(PLACE_OF_RECEIPT_CODE_XPATH);
-	}
-	
-	public String getPlaceOfDelivery() {
-		this.setTab(MAIN_LABEL);
-		return uiDriver.getText(PLACE_OF_DELIVERY_CODE_XPATH);
-	}
-	
-	public void setPlaceOfDelivery(String placeOfDelivery) {
-		this.setTab(MAIN_LABEL);
-		uiDriver.enterText(PLACE_OF_DELIVERY_CODE_XPATH, placeOfDelivery);
-		uiDriver.pressTab(PLACE_OF_DELIVERY_CODE_XPATH);
 	}
 	
 	public String getOriginBranch() {

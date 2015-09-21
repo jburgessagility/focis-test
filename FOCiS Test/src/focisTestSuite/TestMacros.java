@@ -32,6 +32,8 @@ public class TestMacros {
 	
 	public static void testDropdown(FOCiSTester ft, UIDropdown dropdown, String name, String label, String[] options, Boolean isVisible, Boolean isEditable) {
 		String testName = name+" label is "+label;
+		String[] dropdownOptions = dropdown.getOptions();
+		
 		if (label != null) { ft.test(testName, dropdown.getLabel(), label); }
 		
 		if (isVisible) { testName = name+" is visible"; } else { testName = name+" is not visible";	}
@@ -41,11 +43,16 @@ public class TestMacros {
 		ft.test(testName, dropdown.isEditable(), isEditable);
 		
 		testName = name+" has "+options.length+" options";
-		ft.test(testName, dropdown.getOptions().length, options.length);
+		ft.test(testName, dropdownOptions.length, options.length);
 		
 		for (int i = 0; i < options.length; i++) {
 			testName = name+" option "+(i+1)+" is "+options[i];
-			ft.test(testName, dropdown.getOptions()[i], options[i]);
+			if (i < dropdownOptions.length) {
+				ft.test(testName, dropdownOptions[i], options[i]);				
+			} else {
+				ft.test(testName, "", options[i]);
+			}
+			
 		} // for
 	} //testDropdown
 	
@@ -65,5 +72,12 @@ public class TestMacros {
 		if (nameIsEditable) { testName = name+" name is editable"; } else { testName = name+" name is not editable";	}
 		ft.test(testName, location.name.isEditable(), nameIsEditable);
 	} // testNumericField
+	
+	public static void blankJob(FOCiSTester ft, String product, String productType) {
+		FOCiSTester.navBar.open("JOB PROCESSING", "Job Booking");
+		FOCiSTester.templateSearch.product.set(product);
+		FOCiSTester.templateSearch.productType.set(productType);
+		FOCiSTester.templateSearch.createBlankJob();
+	} // blankJob
 	
 } // TestMacros

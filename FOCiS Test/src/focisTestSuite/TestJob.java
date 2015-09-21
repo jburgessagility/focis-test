@@ -112,8 +112,14 @@ public class TestJob {
 		ft.test("Product Type default is FCL (NVOCC)", job.productType.get(), "FCL (NVOCC)");
 		TestMacros.testDropdown(ft, job.productType, "Product Type", "Product Type", PRODUCT_TYPE_OPTIONS, true, true);
 		
-		ft.test("Place of Receipt default is (blank)", job.getPlaceOfReceipt(), "");
-		ft.test("Place of Delivery default is (blank)", job.getPlaceOfDelivery(), "");
+		ft.test("Agility Place of Receipt code default is (blank)", job.placeOfReceipt.getCode(), "");
+		ft.test("Agility Place of Receipt name default is (blank)", job.placeOfReceipt.getName(), "");
+		TestMacros.testLocation(ft, job.placeOfReceipt, "Agility Place of Receipt", "Agility Place of Receipt", true, true, true, true);
+		
+		ft.test("Agility Place of Delivery code default is (blank)", job.placeOfDelivery.getCode(), "");
+		ft.test("Agility Place of Delivery name default is (blank)", job.placeOfDelivery.getName(), "");
+		TestMacros.testLocation(ft, job.placeOfDelivery, "Agility Place of Delivery", "Agility Place of Delivery", true, true, true, true);
+		
 		ft.test("Origin Branch default is (blank)", job.getOriginBranch(), "");
 		ft.test("Destination Branch default is (blank)", job.getDestinationBranch(), "");
 		ft.test("Port of Loading default is (blank)", job.getPortOfLoading(), "");
@@ -170,7 +176,7 @@ public class TestJob {
 		ft.test("Require FCT default is Unchecked", job.requireFCT.get(), false);
 		ft.test("Required Seaquest Type default is Select", job.requiredSeaquestType.get(), "Select");
 		TestMacros.testDropdown(ft, job.requiredSeaquestType, "Required Seaquest Type", "Required Seaquest Type", REQUIRED_SEAQUEST_TYPE_OPTIONS, true, true);
-		ft.test("Invoice Value default is (blank)", job.getInvoiceValue(), "");
+		ft.test("Invoice Value default is (blank)", job.getInvoiceValue(), "");	
 		ft.test("Invoice Currency default is (blank)", job.getInvoiceCurrency(), "");
 		ft.test("Require Letter of Credit default is Unchecked", job.requireLetterOfCredit.get(), false);
 		ft.test("Require Insurance default is Unchecked", job.requireInsurance.get(), false);

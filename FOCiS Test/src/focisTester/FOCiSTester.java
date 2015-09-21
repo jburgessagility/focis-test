@@ -19,8 +19,10 @@ public class FOCiSTester {
 	private int passCount;
 	private int failCount;
 	
+	public static UITemplateSearch templateSearch;
 	public static UIJob job;
 	public static UIUser user;
+	public static UINavBar navBar;
 	public static UIPartiesStakeholder stakeholder;
 	public static UILocation location;
 	public static UICarrierBooking carrierBooking;
@@ -30,7 +32,10 @@ public class FOCiSTester {
 		uiDriver = new UIDriver(args);
 		uiDriver2 = uiDriver;
 		
+		templateSearch = new UITemplateSearch(uiDriver);
 		job = new UIJob(uiDriver);
+		user = new UIUser(uiDriver);
+		navBar = new UINavBar(uiDriver);
 		stakeholder = new UIPartiesStakeholder(uiDriver);
 		carrierBooking = new UICarrierBooking(uiDriver);
 		testCount = 0;
@@ -59,8 +64,9 @@ public class FOCiSTester {
 		} 
 		else { 
 			failCount++; 
-			System.out.println(testCount+" FAIL : "+testCategory+" - "+name); 
+			System.out.println(testCount+" FAIL : "+testCategory+" - "+name);
 		}
+		System.out.println("a="+a+", b="+b);
 		return result;
 	}
 
